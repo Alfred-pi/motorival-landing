@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import DeviceFrame from "./DeviceFrame";
+import { asset } from "../lib/asset";
 
 interface Clip {
   src: string;
@@ -7,9 +8,9 @@ interface Clip {
 }
 
 const CLIPS: Clip[] = [
-  { src: "/media/map-discovery-v2.mp4", poster: "/screens/us/map-us.png" },
-  { src: "/media/rival-zone-v2.mp4", poster: "/screens/us/map-user-details-us.png" },
-  { src: "/media/leaderboard-v2.mp4", poster: "/screens/us/old-rides-us.png" },
+  { src: asset("/media/map-discovery-v2.mp4"), poster: asset("/screens/us/map-us.png") },
+  { src: asset("/media/rival-zone-v2.mp4"), poster: asset("/screens/us/map-user-details-us.png") },
+  { src: asset("/media/leaderboard-v2.mp4"), poster: asset("/screens/us/old-rides-us.png") },
 ];
 
 /**

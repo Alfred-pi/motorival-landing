@@ -1,4 +1,5 @@
 import { type CSSProperties } from "react";
+import { asset } from "../lib/asset";
 
 /**
  * iPhone 15 Pro device frame wrapper.
@@ -52,8 +53,8 @@ const INSET_RIGHT = "8.39%";
 const SCREEN_RADIUS = "4.66% / 2.17%";
 
 const FRAME_SRC: Record<NonNullable<Props["variant"]>, string> = {
-  default: "/frame/iphone-15-pro.png",
-  "no-notch": "/frame/iphone-15-pro-no-notch.png",
+  default: asset("/frame/iphone-15-pro.png"),
+  "no-notch": asset("/frame/iphone-15-pro-no-notch.png"),
 };
 
 export default function DeviceFrame({

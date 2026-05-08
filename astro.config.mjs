@@ -4,14 +4,16 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 
-// TODO: replace with the chosen landing domain (e.g. https://motorival.cc)
-// before going live — required for sitemap + canonical URLs.
-const SITE_URL = 'https://motorival.cc';
+// Landing lives on its own URL — NOT motorival.app (that's the mobile app).
+// Currently hosted on GitHub Pages subpath. Will move to a dedicated domain later.
+const SITE_URL = 'https://alfred-pi.github.io';
+const BASE_PATH = '/motorival-landing/';
 
 const LOCALES = ['fr', 'en', 'es', 'de', 'it', 'pt'];
 
 export default defineConfig({
   site: SITE_URL,
+  base: BASE_PATH,
   output: 'static',
 
   i18n: {

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { t, type Locale } from "../i18n/utils";
+import { asset } from "../lib/asset";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -11,12 +12,12 @@ interface Props {
 }
 
 const SCREENS = [
-  { src: "/screens/us/map-us.png", caption: "Living territory" },
-  { src: "/screens/us/map-user-details-us.png", caption: "Tap a rider" },
-  { src: "/screens/us/map-user-details-us2.png", caption: "Rivalry stats" },
-  { src: "/screens/us/user-profil-us.png", caption: "Your persona" },
-  { src: "/screens/us/old-rides-us.png", caption: "Ride history" },
-  { src: "/screens/us/paywall-us.png", caption: "Rival Pass" },
+  { src: asset("/screens/us/map-us.png"), caption: "Living territory" },
+  { src: asset("/screens/us/map-user-details-us.png"), caption: "Tap a rider" },
+  { src: asset("/screens/us/map-user-details-us2.png"), caption: "Rivalry stats" },
+  { src: asset("/screens/us/user-profil-us.png"), caption: "Your persona" },
+  { src: asset("/screens/us/old-rides-us.png"), caption: "Ride history" },
+  { src: asset("/screens/us/paywall-us.png"), caption: "Rival Pass" },
 ];
 
 export default function ShowcaseFancy({ locale }: Props) {

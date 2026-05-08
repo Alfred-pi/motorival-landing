@@ -1,12 +1,13 @@
 ---
 import { t, type Locale } from "../i18n/utils";
+import { asset } from "../lib/asset";
 import DeviceMockup from "../components/DeviceMockup.astro";
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const dict = t(locale);
 
-const screens = ["/screens/riding.png", "/screens/leaderboard.png", "/screens/profile.png"];
+const screens = [asset("/screens/riding.png"), asset("/screens/leaderboard.png"), asset("/screens/profile.png")];
 ---
 
 <section id="loop" class="relative py-24 md:py-36 overflow-hidden">

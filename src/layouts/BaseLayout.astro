@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import { t, type Locale, alternates, localePath } from "../i18n/utils";
+import { t, type Locale, alternates, localePath, withBase } from "../i18n/utils";
 import { LOCALE_HREFLANG } from "../i18n/ui";
 
 interface Props {
@@ -59,8 +59,8 @@ const jsonLd = {
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}apple-touch-icon.png`} />
     <meta name="theme-color" content="#07080C" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
 
@@ -68,14 +68,14 @@ const jsonLd = {
     {alts.map((a) => (
       <link rel="alternate" hreflang={LOCALE_HREFLANG[a.locale]} href={a.href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${pagePath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${withBase(pagePath)}`} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={dict.meta.ogTitle} />
     <meta property="og:description" content={dict.meta.ogDescription} />
-    <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+    <meta property="og:image" content={`${siteUrl}${import.meta.env.BASE_URL}og-image.png`} />
     <meta property="og:locale" content={LOCALE_HREFLANG[locale].replace("-", "_")} />
     <meta property="og:site_name" content="MotoRival" />
 
@@ -83,7 +83,7 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={dict.meta.ogTitle} />
     <meta name="twitter:description" content={dict.meta.ogDescription} />
-    <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+    <meta name="twitter:image" content={`${siteUrl}${import.meta.env.BASE_URL}og-image.png`} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -121,8 +121,8 @@ const jsonLd = {
     <!-- Page loader — fades out once the page has loaded -->
     <div id="page-loader" aria-hidden="true">
       <div class="page-loader-mark">
-        <img src="/logo-dark.svg" class="logo-dark" alt="" width="auto" height="44" style="height:44px;width:auto;" />
-        <img src="/logo-light.svg" class="logo-light" alt="" width="auto" height="44" style="height:44px;width:auto;" />
+        <img src={`${import.meta.env.BASE_URL}logo-dark.svg`} class="logo-dark" alt="" width="auto" height="44" style="height:44px;width:auto;" />
+        <img src={`${import.meta.env.BASE_URL}logo-light.svg`} class="logo-light" alt="" width="auto" height="44" style="height:44px;width:auto;" />
       </div>
       <div class="page-loader-bar"><span></span></div>
     </div>

@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
 import DeviceFrame from "../components/DeviceFrame";
+import { asset } from "../lib/asset";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -22,10 +23,10 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     title: "Quatre écrans. Une obsession.",
     sub: "Chaque vue est conçue pour ne jamais te ralentir.",
     slides: [
-      { src: "/screens/us/map-us.png", number: "01", title: "Carte vivante.", desc: "Mise à jour en continu. Auto-capture. Aucun tap pendant le ride." },
-      { src: "/screens/us/map-user-details-us.png", number: "02", title: "Tape un rider.", desc: "Vois la rivalité, l'historique, la couleur du crew. Tout est à un tap." },
-      { src: "/screens/us/user-profil-us.png", number: "03", title: "Persona auto-révélée.", desc: "Six personas détectées sur tes 30 derniers rides. Ta signature émerge." },
-      { src: "/screens/us/old-rides-us.png", number: "04", title: "Historique propre.", desc: "Tes runs, tes records, tes zones gagnées et perdues. Sobre, lisible." },
+      { src: asset("/screens/us/map-us.png"), number: "01", title: "Carte vivante.", desc: "Mise à jour en continu. Auto-capture. Aucun tap pendant le ride." },
+      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tape un rider.", desc: "Vois la rivalité, l'historique, la couleur du crew. Tout est à un tap." },
+      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-révélée.", desc: "Six personas détectées sur tes 30 derniers rides. Ta signature émerge." },
+      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Historique propre.", desc: "Tes runs, tes records, tes zones gagnées et perdues. Sobre, lisible." },
     ],
   },
   en: {
@@ -33,10 +34,10 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     title: "Four screens. One obsession.",
     sub: "Every view is built to never slow you down.",
     slides: [
-      { src: "/screens/us/map-us.png", number: "01", title: "Living map.", desc: "Continuously updated. Auto-capture. Zero taps during the ride." },
-      { src: "/screens/us/map-user-details-us.png", number: "02", title: "Tap a rider.", desc: "See the rivalry, history, crew color. Everything's one tap away." },
-      { src: "/screens/us/user-profil-us.png", number: "03", title: "Auto-revealed persona.", desc: "Six personas detected from your last 30 rides. Your signature emerges." },
-      { src: "/screens/us/old-rides-us.png", number: "04", title: "Clean history.", desc: "Your runs, records, zones won and lost. Quiet and readable." },
+      { src: asset("/screens/us/map-us.png"), number: "01", title: "Living map.", desc: "Continuously updated. Auto-capture. Zero taps during the ride." },
+      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tap a rider.", desc: "See the rivalry, history, crew color. Everything's one tap away." },
+      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Auto-revealed persona.", desc: "Six personas detected from your last 30 rides. Your signature emerges." },
+      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Clean history.", desc: "Your runs, records, zones won and lost. Quiet and readable." },
     ],
   },
   es: {
@@ -44,10 +45,10 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     title: "Cuatro pantallas. Una obsesión.",
     sub: "Cada vista está hecha para nunca frenarte.",
     slides: [
-      { src: "/screens/us/map-us.png", number: "01", title: "Mapa vivo.", desc: "Actualizado en tiempo real. Auto-captura. Cero toques durante la ruta." },
-      { src: "/screens/us/map-user-details-us.png", number: "02", title: "Toca un rider.", desc: "Ves la rivalidad, el historial, el color del crew. Todo a un toque." },
-      { src: "/screens/us/user-profil-us.png", number: "03", title: "Persona auto-revelada.", desc: "Seis personas detectadas en tus 30 últimas rutas. Tu firma emerge." },
-      { src: "/screens/us/old-rides-us.png", number: "04", title: "Historial limpio.", desc: "Tus rutas, récords, zonas ganadas y perdidas. Sobrio, legible." },
+      { src: asset("/screens/us/map-us.png"), number: "01", title: "Mapa vivo.", desc: "Actualizado en tiempo real. Auto-captura. Cero toques durante la ruta." },
+      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Toca un rider.", desc: "Ves la rivalidad, el historial, el color del crew. Todo a un toque." },
+      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-revelada.", desc: "Seis personas detectadas en tus 30 últimas rutas. Tu firma emerge." },
+      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Historial limpio.", desc: "Tus rutas, récords, zonas ganadas y perdidas. Sobrio, legible." },
     ],
   },
   de: {
@@ -55,10 +56,10 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     title: "Vier Screens. Eine Obsession.",
     sub: "Jede Ansicht ist gebaut, um dich nie auszubremsen.",
     slides: [
-      { src: "/screens/us/map-us.png", number: "01", title: "Lebendige Karte.", desc: "Live aktualisiert. Auto-Capture. Null Taps während der Fahrt." },
-      { src: "/screens/us/map-user-details-us.png", number: "02", title: "Tippe einen Rider.", desc: "Rivalität, Historie, Crew-Farbe. Alles nur einen Tap entfernt." },
-      { src: "/screens/us/user-profil-us.png", number: "03", title: "Auto-Persona.", desc: "Sechs Personas aus deinen letzten 30 Rides. Deine Signatur entsteht." },
-      { src: "/screens/us/old-rides-us.png", number: "04", title: "Saubere Historie.", desc: "Deine Rides, Rekorde, gewonnene und verlorene Zonen. Ruhig, lesbar." },
+      { src: asset("/screens/us/map-us.png"), number: "01", title: "Lebendige Karte.", desc: "Live aktualisiert. Auto-Capture. Null Taps während der Fahrt." },
+      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tippe einen Rider.", desc: "Rivalität, Historie, Crew-Farbe. Alles nur einen Tap entfernt." },
+      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Auto-Persona.", desc: "Sechs Personas aus deinen letzten 30 Rides. Deine Signatur entsteht." },
+      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Saubere Historie.", desc: "Deine Rides, Rekorde, gewonnene und verlorene Zonen. Ruhig, lesbar." },
     ],
   },
   it: {
@@ -66,10 +67,10 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     title: "Quattro schermate. Un'ossessione.",
     sub: "Ogni vista è pensata per non rallentarti mai.",
     slides: [
-      { src: "/screens/us/map-us.png", number: "01", title: "Mappa viva.", desc: "Aggiornata in tempo reale. Cattura automatica. Zero tap durante il ride." },
-      { src: "/screens/us/map-user-details-us.png", number: "02", title: "Tocca un rider.", desc: "Rivalità, cronologia, colore del crew. Tutto a un tap." },
-      { src: "/screens/us/user-profil-us.png", number: "03", title: "Persona auto-rivelata.", desc: "Sei personas dai tuoi ultimi 30 ride. La tua firma emerge." },
-      { src: "/screens/us/old-rides-us.png", number: "04", title: "Cronologia pulita.", desc: "I tuoi ride, record, zone vinte e perse. Sobria, leggibile." },
+      { src: asset("/screens/us/map-us.png"), number: "01", title: "Mappa viva.", desc: "Aggiornata in tempo reale. Cattura automatica. Zero tap durante il ride." },
+      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tocca un rider.", desc: "Rivalità, cronologia, colore del crew. Tutto a un tap." },
+      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-rivelata.", desc: "Sei personas dai tuoi ultimi 30 ride. La tua firma emerge." },
+      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Cronologia pulita.", desc: "I tuoi ride, record, zone vinte e perse. Sobria, leggibile." },
     ],
   },
   pt: {
@@ -77,10 +78,10 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     title: "Quatro telas. Uma obsessão.",
     sub: "Cada vista foi feita para nunca te atrasar.",
     slides: [
-      { src: "/screens/us/map-us.png", number: "01", title: "Mapa vivo.", desc: "Atualizado em tempo real. Auto-captura. Zero toques durante o ride." },
-      { src: "/screens/us/map-user-details-us.png", number: "02", title: "Toque um rider.", desc: "Rivalidade, histórico, cor do crew. Tudo a um toque." },
-      { src: "/screens/us/user-profil-us.png", number: "03", title: "Persona auto-revelada.", desc: "Seis personas dos seus últimos 30 rides. Sua assinatura emerge." },
-      { src: "/screens/us/old-rides-us.png", number: "04", title: "Histórico limpo.", desc: "Seus rides, recordes, zonas ganhas e perdidas. Sóbrio, legível." },
+      { src: asset("/screens/us/map-us.png"), number: "01", title: "Mapa vivo.", desc: "Atualizado em tempo real. Auto-captura. Zero toques durante o ride." },
+      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Toque um rider.", desc: "Rivalidade, histórico, cor do crew. Tudo a um toque." },
+      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-revelada.", desc: "Seis personas dos seus últimos 30 rides. Sua assinatura emerge." },
+      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Histórico limpo.", desc: "Seus rides, recordes, zonas ganhas e perdidas. Sóbrio, legível." },
     ],
   },
 };

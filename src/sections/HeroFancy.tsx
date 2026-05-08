@@ -132,7 +132,7 @@ export default function HeroFancy({ locale }: Props) {
               style={{ height: 54 }}
             >
               <img
-                src="/badges/app-store-en.svg"
+                src={`${import.meta.env.BASE_URL}badges/app-store-en.svg`}
                 alt={dict.badge.aria}
                 style={{ height: 54, width: "auto", borderRadius: 10 }}
               />

@@ -13,12 +13,22 @@ export function localeFromUrl(url: URL): Locale {
   return isLocale(segment) ? segment : DEFAULT_LOCALE;
 }
 
+/** Trim trailing slash from Astro's BASE_URL (e.g. "/motorival-landing/" → "/motorival-landing"). */
+const BASE = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+
+/** Prefix a path with the configured Astro base (no-op when base is "/"). */
+export function withBase(path: string): string {
+  const clean = path.startsWith('/') ? path : `/${path}`;
+  return `${BASE}${clean}`;
+}
+
 /** Build a path for a given locale. Default locale lives at root (no prefix). */
 export function localePath(locale: Locale, path = '/'): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  if (locale === DEFAULT_LOCALE) return clean;
-  // Avoid double slashes
-  return `/${locale}${clean === '/' ? '' : clean}`;
+  const localised = locale === DEFAULT_LOCALE
+    ? clean
+    : `/${locale}${clean === '/' ? '' : clean}`;
+  return `${BASE}${localised}`;
 }
 
 /** Get the dictionary for a locale. */

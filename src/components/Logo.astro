@@ -8,7 +8,7 @@ const { height = 32, className = "" } = Astro.props;
 
 <span class={`inline-flex items-center ${className}`} aria-label="MotoRival">
   <img
-    src="/logo-dark.svg"
+    src={`${import.meta.env.BASE_URL}logo-dark.svg`}
     alt="MotoRival"
     width="auto"
     height={height}
@@ -18,7 +18,7 @@ const { height = 32, className = "" } = Astro.props;
     decoding="async"
   />
   <img
-    src="/logo-light.svg"
+    src={`${import.meta.env.BASE_URL}logo-light.svg`}
     alt="MotoRival"
     width="auto"
     height={height}

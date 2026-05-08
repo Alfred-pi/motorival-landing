@@ -1,5 +1,6 @@
 ---
 import { t, type Locale } from "../i18n/utils";
+import { asset } from "../lib/asset";
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
@@ -7,12 +8,12 @@ const dict = t(locale);
 
 // Repeat the screens to fill the marquee track.
 const SCREENS = [
-  { src: "/screens/map.png", caption: dict.showcase.captions[0] },
-  { src: "/screens/leaderboard.png", caption: dict.showcase.captions[1] },
-  { src: "/screens/profile.png", caption: dict.showcase.captions[2] },
-  { src: "/screens/summary.png", caption: dict.showcase.captions[3] },
-  { src: "/screens/riding.png", caption: dict.showcase.captions[0] },
-  { src: "/screens/riding-alt.png", caption: dict.showcase.captions[3] },
+  { src: asset("/screens/map.png"), caption: dict.showcase.captions[0] },
+  { src: asset("/screens/leaderboard.png"), caption: dict.showcase.captions[1] },
+  { src: asset("/screens/profile.png"), caption: dict.showcase.captions[2] },
+  { src: asset("/screens/summary.png"), caption: dict.showcase.captions[3] },
+  { src: asset("/screens/riding.png"), caption: dict.showcase.captions[0] },
+  { src: asset("/screens/riding-alt.png"), caption: dict.showcase.captions[3] },
 ];
 // Two copies → CSS translateX(-50%) loops seamlessly.
 const TRACK = [...SCREENS, ...SCREENS];

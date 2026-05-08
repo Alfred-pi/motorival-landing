@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { t, type Locale } from "../i18n/utils";
+import { asset } from "../lib/asset";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -11,9 +12,9 @@ interface Props {
 }
 
 const SCREENS = [
-  "/screens/us/map-us.png",
-  "/screens/us/map-user-details-us.png",
-  "/screens/us/user-profil-us.png",
+  asset("/screens/us/map-us.png"),
+  asset("/screens/us/map-user-details-us.png"),
+  asset("/screens/us/user-profil-us.png"),
 ];
 
 export default function LoopFancy({ locale }: Props) {

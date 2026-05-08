@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
+import { asset } from "../lib/asset";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -58,9 +59,9 @@ export default function LiveSection({ locale }: Props) {
   const copy = COPY[locale];
 
   const clips: Clip[] = [
-    { posterSrc: "/screens/us/map-us.png", videoSrc: "/media/map-discovery-540.mp4", caption: copy.clips[0] },
-    { posterSrc: "/screens/us/map-user-details-us.png", videoSrc: "/media/rival-zone-540.mp4", caption: copy.clips[1] },
-    { posterSrc: "/screens/us/user-profil-us.png", videoSrc: "/media/level-up-540.mp4", caption: copy.clips[2] },
+    { posterSrc: asset("/screens/us/map-us.png"), videoSrc: asset("/media/map-discovery-540.mp4"), caption: copy.clips[0] },
+    { posterSrc: asset("/screens/us/map-user-details-us.png"), videoSrc: asset("/media/rival-zone-540.mp4"), caption: copy.clips[1] },
+    { posterSrc: asset("/screens/us/user-profil-us.png"), videoSrc: asset("/media/level-up-540.mp4"), caption: copy.clips[2] },
   ];
 
   useGSAP(
