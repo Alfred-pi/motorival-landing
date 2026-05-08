@@ -1,0 +1,77 @@
+---
+import Logo from "./Logo.astro";
+import { SUPPORTED_LOCALES, LOCALE_NAMES } from "../i18n/ui";
+import { t, type Locale, localePath } from "../i18n/utils";
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const dict = t(locale);
+---
+
+<footer class="border-t border-[var(--color-line)] bg-[var(--color-bg)]">
+  <div class="mx-auto max-w-[1320px] px-6 md:px-10 pt-20 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 pb-16">
+      <div>
+        <div class="mb-3"><Logo height={28} /></div>
+        <p class="text-sm text-[var(--color-muted)] max-w-[34ch] leading-relaxed">
+          {dict.footer.tagline}
+        </p>
+      </div>
+
+      <div>
+        <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.legal}</h4>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href={localePath(locale, "/privacy")} class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
+              {dict.footer.privacy}
+            </a>
+          </li>
+          <li>
+            <a href={localePath(locale, "/terms")} class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
+              {dict.footer.terms}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.support}</h4>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="mailto:support@motorival.app" class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
+              support@motorival.app
+            </a>
+          </li>
+          <li>
+            <a href="#faq" class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">FAQ</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.languages}</h4>
+        <ul class="space-y-2 text-sm">
+          {SUPPORTED_LOCALES.map((loc) => (
+            <li>
+              <a
+                href={localePath(loc, "/")}
+                class={`tracking-wider transition-colors ${
+                  loc === locale
+                    ? "text-[var(--color-accent)]"
+                    : "text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)]"
+                }`}
+              >
+                {LOCALE_NAMES[loc]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-[var(--color-line)] pt-8 flex flex-wrap gap-4 justify-between text-xs text-[var(--color-muted)] tracking-wide">
+      <span>{dict.footer.rights}</span>
+      <span class="opacity-70">{dict.footer.motto}</span>
+    </div>
+  </div>
+</footer>

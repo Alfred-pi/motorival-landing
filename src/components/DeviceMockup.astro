@@ -1,0 +1,51 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  /** ~280, 360, 440, 520 px */
+  size?: "md" | "lg" | "xl" | "2xl";
+  /** Rotation in deg (subtle parallax tilt). */
+  tilt?: number;
+  /** Glow halo behind the screen. */
+  glow?: "red" | "gold" | "none";
+  className?: string;
+  loading?: "lazy" | "eager";
+}
+
+const { src, alt, size = "xl", tilt = 0, glow = "red", className = "", loading = "lazy" } = Astro.props;
+
+const sizeClass = {
+  md: "w-[240px] sm:w-[260px]",
+  lg: "w-[280px] sm:w-[320px] md:w-[340px]",
+  xl: "w-[300px] sm:w-[340px] md:w-[380px] lg:w-[420px]",
+  "2xl": "w-[340px] sm:w-[400px] md:w-[460px] lg:w-[500px]",
+}[size];
+
+const glowGradient =
+  glow === "red"
+    ? "radial-gradient(circle at 50% 50%, rgba(255,23,68,0.55) 0%, transparent 70%)"
+    : glow === "gold"
+    ? "radial-gradient(circle at 50% 50%, rgba(255,215,0,0.45) 0%, transparent 70%)"
+    : "transparent";
+---
+
+<div
+  class={`relative ${sizeClass} ${className}`}
+  style={`transform: rotate(${tilt}deg);`}
+>
+  {glow !== "none" && (
+    <div
+      aria-hidden="true"
+      class="device-glow"
+      style={`background: ${glowGradient};`}
+    />
+  )}
+
+  <img
+    src={src}
+    alt={alt}
+    loading={loading}
+    decoding="async"
+    class="screen-shot w-full h-auto block"
+  />
+</div>

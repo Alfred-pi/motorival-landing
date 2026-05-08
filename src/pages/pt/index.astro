@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroFancy from "../../sections/HeroFancy.tsx";
+import QuoteSection from "../../sections/QuoteSection.tsx";
+import ScreensFancy from "../../sections/ScreensFancy.tsx";
+import Features from "../../sections/Features.tsx";
+import FAQFancy from "../../sections/FAQFancy.tsx";
+import FinalCTA from "../../sections/FinalCTA.tsx";
+
+const locale = "pt" as const;
+---
+
+<BaseLayout locale={locale} pagePath="/">
+  <HeroFancy locale={locale} client:load />
+  <QuoteSection locale={locale} client:visible />
+  <ScreensFancy locale={locale} client:only="react" />
+  <Features locale={locale} client:visible />
+  <FAQFancy locale={locale} client:visible />
+  <FinalCTA locale={locale} client:visible />
+</BaseLayout>

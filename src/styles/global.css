@@ -1,0 +1,327 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Tokens — light dominant (Apple/editorial)
+   ───────────────────────────────────────────── */
+
+@theme {
+  /* Light theme (default) */
+  --color-bg: #FFFFFF;
+  --color-bg-2: #F7F7F8;
+  --color-bg-3: #EFEFF1;
+  --color-text: #0A0B10;
+  --color-text-2: #2C2E36;
+  --color-muted: #6E7280;
+  --color-line: #E6E7EB;
+  --color-line-2: #D2D4DA;
+  --color-accent: #FF1744;
+
+  --font-heading: "Inter Tight", "Inter", -apple-system, system-ui, sans-serif;
+  --font-display: "Satoshi", "Inter Tight", -apple-system, sans-serif;
+  --font-body: "Inter", -apple-system, system-ui, sans-serif;
+
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0A0B10;
+  --color-bg-2: #11131A;
+  --color-bg-3: #181B24;
+  --color-text: #F5F6FA;
+  --color-text-2: #C9CBD3;
+  --color-muted: #8A8E9C;
+  --color-line: #1F2230;
+  --color-line-2: #262B3A;
+  --color-accent: #FF1744;
+}
+
+/* ─────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-bg);
+  color-scheme: light;
+}
+html[data-theme="dark"] { color-scheme: dark; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0;
+  overflow-x: hidden;
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection { background: var(--color-text); color: var(--color-bg); }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ─────────────────────────────────────────────
+   Type — editorial
+   ───────────────────────────────────────────── */
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────
+   Surfaces
+   ───────────────────────────────────────────── */
+
+.surface {
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+}
+
+.hairline-top { border-top: 1px solid var(--color-line); }
+.hairline-bot { border-bottom: 1px solid var(--color-line); }
+
+/* ─────────────────────────────────────────────
+   Reveal-on-scroll baseline (used by IO observer)
+   ───────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms var(--ease-spring), transform 700ms var(--ease-spring);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+
+/* ─────────────────────────────────────────────
+   Theme-aware logo
+   ───────────────────────────────────────────── */
+
+.logo-dark, .logo-light { display: none; }
+[data-theme="dark"] .logo-dark { display: inline-block; }
+[data-theme="light"] .logo-light { display: inline-block; }
+:root:not([data-theme="dark"]) .logo-light { display: inline-block; }
+
+/* ─────────────────────────────────────────────
+   Page loader — full-page splash, fades out on window load
+   ───────────────────────────────────────────── */
+
+html.loading,
+html.loading body {
+  overflow: hidden;
+}
+
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  transition: opacity 700ms var(--ease-spring), visibility 0s linear 700ms;
+}
+#page-loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader-mark {
+  opacity: 0;
+  transform: translateY(14px) scale(0.96);
+  animation: pl-mark 1100ms 100ms var(--ease-spring) forwards;
+  filter: drop-shadow(0 12px 40px color-mix(in oklab, var(--color-accent) 22%, transparent));
+}
+@keyframes pl-mark {
+  to { opacity: 1; transform: none; }
+}
+
+.page-loader-bar {
+  position: relative;
+  width: clamp(140px, 28vw, 220px);
+  height: 1px;
+  background: var(--color-line);
+  overflow: hidden;
+  opacity: 0;
+  animation: pl-bar-fade 400ms 500ms ease forwards;
+}
+.page-loader-bar > span {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: pl-bar 1300ms 500ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes pl-bar { to { transform: scaleX(1); } }
+@keyframes pl-bar-fade { to { opacity: 1; } }
+
+/* On loaded, sections fade up gently */
+html.loaded .hero-stage > * {
+  animation: stageIn 1.0s var(--ease-spring) backwards;
+}
+html.loaded .hero-stage > *:nth-child(1) { animation-delay: 0.05s; }
+html.loaded .hero-stage > *:nth-child(2) { animation-delay: 0.18s; }
+html.loaded .hero-stage > *:nth-child(3) { animation-delay: 0.34s; }
+html.loaded .hero-stage > *:nth-child(4) { animation-delay: 0.5s; }
+html.loaded .hero-stage > *:nth-child(5) { animation-delay: 0.62s; }
+@keyframes stageIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.99); filter: blur(14px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* ─────────────────────────────────────────────
+   Hex grid SVG — signature visual ambient bg
+   ───────────────────────────────────────────── */
+.hex-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  mask-image: radial-gradient(ellipse at 70% 40%, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 40%, black 0%, transparent 65%);
+  z-index: 0;
+}
+@media (max-width: 1023px) {
+  .hex-bg {
+    opacity: 0.32;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 0%, transparent 70%);
+  }
+}
+[data-theme="dark"] .hex-bg { opacity: 0.28; }
+
+.hex-cell {
+  fill: none;
+  stroke: var(--color-line-2);
+  stroke-width: 1;
+  transition: fill 600ms var(--ease-soft), stroke 300ms;
+}
+.hex-cell.is-on {
+  fill: color-mix(in oklab, var(--color-accent) 12%, transparent);
+  stroke: color-mix(in oklab, var(--color-accent) 50%, transparent);
+}
+
+/* ─────────────────────────────────────────────
+   Screen shot — soft shadow (legacy)
+   ───────────────────────────────────────────── */
+
+.screen-shot {
+  border-radius: 36px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 32px 64px -24px rgba(0, 0, 0, 0.18),
+    0 16px 32px -16px rgba(0, 0, 0, 0.12);
+}
+[data-theme="dark"] .screen-shot {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 32px 64px -24px rgba(0, 0, 0, 0.6),
+    0 16px 32px -16px rgba(255, 23, 68, 0.18);
+}
+
+/* ─────────────────────────────────────────────
+   Floating screen — frame-less, no bezel.
+   Just the rounded display with a soft drop shadow + accent glow.
+   ───────────────────────────────────────────── */
+.floating-screen {
+  box-shadow:
+    0 50px 110px -28px rgba(0, 0, 0, 0.30),
+    0 24px 48px -16px color-mix(in oklab, var(--color-accent) 22%, transparent);
+}
+[data-theme="dark"] .floating-screen {
+  box-shadow:
+    0 50px 110px -28px rgba(0, 0, 0, 0.7),
+    0 24px 48px -16px color-mix(in oklab, var(--color-accent) 28%, transparent);
+}
+
+/* ─────────────────────────────────────────────
+   Hero video shell — frame-less, iPhone-like rounded screen
+   for the looping screen-recording in the hero. The recording
+   already includes the dynamic island, so we don't draw a frame.
+   ───────────────────────────────────────────── */
+.hero-video-shell {
+  border-radius: 14% / 6.5%;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.18),
+    0 0 0 8px #0d0e12,
+    0 0 0 9px rgba(255, 255, 255, 0.06),
+    0 40px 100px -32px rgba(0, 0, 0, 0.35),
+    0 24px 48px -16px color-mix(in oklab, var(--color-accent) 22%, transparent);
+}
+[data-theme="dark"] .hero-video-shell {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 0 8px #18191f,
+    0 0 0 9px rgba(255, 255, 255, 0.06),
+    0 40px 100px -32px rgba(0, 0, 0, 0.7),
+    0 24px 48px -16px color-mix(in oklab, var(--color-accent) 28%, transparent);
+}
+
+/* ─────────────────────────────────────────────
+   Live video shell — frame-less, iPhone-like rounded screen
+   The screen recording already contains the dynamic island, so we don't
+   wrap it with the device frame PNG. We just give it the iPhone display's
+   corner radius + a soft 1px outer ring so it reads as a "lit screen".
+   ───────────────────────────────────────────── */
+
+.live-video-shell {
+  border-radius: 14% / 6.5%;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.18),
+    0 0 0 8px rgba(0, 0, 0, 0.95),
+    0 0 0 9px rgba(255, 255, 255, 0.08),
+    0 32px 80px -24px rgba(0, 0, 0, 0.28),
+    0 16px 32px -12px color-mix(in oklab, var(--color-accent) 16%, transparent);
+}
+[data-theme="dark"] .live-video-shell {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 0 8px rgba(20, 22, 28, 1),
+    0 0 0 9px rgba(255, 255, 255, 0.06),
+    0 32px 80px -24px rgba(0, 0, 0, 0.7),
+    0 16px 32px -12px color-mix(in oklab, var(--color-accent) 22%, transparent);
+}

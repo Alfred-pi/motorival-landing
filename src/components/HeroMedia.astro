@@ -1,0 +1,64 @@
+---
+interface Props {
+  posterSrc: string;
+  /** When provided, renders a looping muted <video>. Otherwise renders the poster as <img>. */
+  videoSrc?: string;
+  /** Optional WebM source for better compression on Chrome/Firefox. */
+  videoSrcWebm?: string;
+  alt: string;
+  glow?: "red" | "gold" | "none";
+  className?: string;
+  tilt?: number;
+}
+
+const {
+  posterSrc,
+  videoSrc,
+  videoSrcWebm,
+  alt,
+  glow = "red",
+  className = "",
+  tilt = 0,
+} = Astro.props;
+
+const glowGradient =
+  glow === "red"
+    ? "radial-gradient(circle at 50% 50%, rgba(255,23,68,0.55) 0%, transparent 70%)"
+    : glow === "gold"
+    ? "radial-gradient(circle at 50% 50%, rgba(255,215,0,0.45) 0%, transparent 70%)"
+    : "transparent";
+---
+
+<div class={`relative ${className}`} style={tilt ? `transform: rotate(${tilt}deg);` : undefined}>
+  {glow !== "none" && (
+    <div
+      aria-hidden="true"
+      class="device-glow"
+      style={`background: ${glowGradient};`}
+    />
+  )}
+
+  {videoSrc ? (
+    <video
+      class="screen-shot w-full h-auto block"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      poster={posterSrc}
+      aria-label={alt}
+    >
+      {videoSrcWebm && <source src={videoSrcWebm} type="video/webm" />}
+      <source src={videoSrc} type="video/mp4" />
+    </video>
+  ) : (
+    <img
+      src={posterSrc}
+      alt={alt}
+      class="screen-shot w-full h-auto block"
+      loading="eager"
+      decoding="async"
+    />
+  )}
+</div>

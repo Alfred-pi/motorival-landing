@@ -1,0 +1,58 @@
+---
+import { SUPPORTED_LOCALES, LOCALE_NAMES, type Locale } from "../i18n/ui";
+import { localePath } from "../i18n/utils";
+
+interface Props {
+  current: Locale;
+  pagePath?: string;
+}
+const { current, pagePath = "/" } = Astro.props;
+---
+
+<details class="relative" data-lang-switcher>
+  <summary
+    class="list-none flex items-center gap-1.5 px-2.5 py-1.5 surface rounded-lg text-xs font-semibold tracking-wider cursor-pointer hover:text-[var(--color-accent)] transition-colors select-none"
+    aria-label="Change language"
+  >
+    <span>{LOCALE_NAMES[current]}</span>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </summary>
+  <ul
+    class="absolute right-0 mt-2 surface rounded-lg overflow-hidden min-w-[88px] py-1 shadow-2xl z-50"
+    role="menu"
+  >
+    {SUPPORTED_LOCALES.map((loc) => (
+      <li role="none">
+        <a
+          role="menuitem"
+          href={localePath(loc, pagePath)}
+          class={`block px-3 py-1.5 text-xs font-semibold tracking-wider hover:bg-[var(--color-bg-3)] transition-colors ${
+            loc === current
+              ? "text-[var(--color-accent)]"
+              : "text-[var(--color-muted)] hover:text-[var(--color-text)]"
+          }`}
+          aria-current={loc === current ? "page" : undefined}
+        >
+          {LOCALE_NAMES[loc]}
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  details summary::-webkit-details-marker { display: none; }
+  details[open] summary svg { transform: rotate(180deg); }
+  details summary svg { transition: transform 200ms var(--ease-soft); }
+</style>
+
+<script>
+  // Close lang menu on outside click
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll<HTMLDetailsElement>("[data-lang-switcher]").forEach((d) => {
+      if (!d.contains(e.target as Node) && d.open) d.open = false;
+    });
+  });
+</script>

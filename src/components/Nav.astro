@@ -1,0 +1,66 @@
+---
+import Logo from "./Logo.astro";
+import LangSwitcher from "./LangSwitcher.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { t, type Locale, localePath } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+  pagePath?: string;
+}
+const { locale, pagePath = "/" } = Astro.props;
+const dict = t(locale);
+---
+
+<header
+  data-nav
+  class="fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color] duration-200"
+  style="background-color: transparent; border-bottom: 1px solid transparent;"
+>
+  <div class="mx-auto max-w-[1320px] flex items-center justify-between px-5 md:px-10 py-3.5">
+    <a
+      href={localePath(locale, "/")}
+      class="flex items-center"
+      aria-label="MotoRival — home"
+    >
+      <Logo height={28} />
+    </a>
+
+    <div class="flex items-center gap-2 md:gap-3">
+      <LangSwitcher current={locale} pagePath={pagePath} />
+      <ThemeToggle locale={locale} />
+      <button
+        type="button"
+        data-appstore-trigger
+        class="hidden sm:inline-flex bg-[var(--color-accent)] text-white px-4 py-2 text-sm font-semibold rounded-lg hover:-translate-y-0.5 transition-transform hover:shadow-[0_8px_24px_-8px_rgba(255,23,68,0.6)] cursor-pointer"
+      >
+        {dict.nav.download}
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer to offset the fixed nav (matches nav height ~56-60px) -->
+<div aria-hidden="true" class="h-[60px]"></div>
+
+<script>
+  const nav = document.querySelector<HTMLElement>("[data-nav]");
+  if (nav) {
+    const onScroll = () => {
+      const scrolled = window.scrollY > 24;
+      if (scrolled) {
+        nav.style.backgroundColor = "color-mix(in oklab, var(--color-bg) 85%, transparent)";
+        nav.style.borderBottomColor = "var(--color-line)";
+        nav.style.backdropFilter = "blur(12px)";
+        (nav.style as any).webkitBackdropFilter = "blur(12px)";
+      } else {
+        nav.style.backgroundColor = "transparent";
+        nav.style.borderBottomColor = "transparent";
+        nav.style.backdropFilter = "";
+        (nav.style as any).webkitBackdropFilter = "";
+      }
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+</script>

@@ -1,0 +1,156 @@
+---
+import { t, type Locale } from "../i18n/utils";
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const dict = t(locale);
+
+// Initials for placeholder avatars (until real photos / app exports).
+const youInitials = dict.nemesis.youName.slice(0, 2).toUpperCase();
+const themInitials = dict.nemesis.themName.slice(0, 2).toUpperCase();
+---
+
+<section class="nemesis relative py-24 md:py-36 overflow-hidden border-t border-[var(--color-line)]">
+  <div aria-hidden="true" class="absolute inset-0 -z-10 hex-grid opacity-50"></div>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 nemesis-radial"></div>
+
+  <div class="mx-auto max-w-[1320px] px-6 md:px-10">
+    <header class="text-center mb-16 md:mb-20 reveal reveal-stagger">
+      <span class="eyebrow text-[var(--color-accent)] block mb-4">{dict.nemesis.eyebrow}</span>
+      <h2 class="font-display italic text-[clamp(36px,7vw,96px)] leading-[0.95] tracking-tight max-w-[20ch] mx-auto">
+        {dict.nemesis.title}
+      </h2>
+      <p class="text-[var(--color-muted)] text-base md:text-lg mt-6 max-w-[52ch] mx-auto leading-relaxed">
+        {dict.nemesis.sub}
+      </p>
+    </header>
+
+    <!-- Battle layout: avatar — VS — avatar -->
+    <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:gap-8 md:gap-16 reveal">
+      <!-- YOU -->
+      <figure class="flex flex-col items-center text-center">
+        <div class="rider-avatar rider-avatar--you">
+          <span class="font-display italic">{youInitials}</span>
+          <div class="rider-pulse" aria-hidden="true"></div>
+        </div>
+        <figcaption class="mt-5">
+          <div class="eyebrow text-[var(--color-muted)] mb-1.5">{dict.nemesis.youLabel}</div>
+          <div class="font-display text-lg md:text-xl">{dict.nemesis.youName}</div>
+          <div class="font-display italic text-2xl md:text-3xl text-[var(--color-text)] mt-1">
+            {dict.nemesis.youZones}
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- VS divider -->
+      <div class="flex flex-col items-center gap-3" aria-hidden="true">
+        <div class="vs-divider top"></div>
+        <span class="vs-label font-display italic">VS</span>
+        <div class="vs-divider bottom"></div>
+      </div>
+
+      <!-- NEMESIS -->
+      <figure class="flex flex-col items-center text-center">
+        <div class="rider-avatar rider-avatar--them">
+          <span class="font-display italic">{themInitials}</span>
+        </div>
+        <figcaption class="mt-5">
+          <div class="eyebrow text-[var(--color-accent)] mb-1.5">{dict.nemesis.themLabel}</div>
+          <div class="font-display text-lg md:text-xl">{dict.nemesis.themName}</div>
+          <div class="font-display italic text-2xl md:text-3xl text-[var(--color-text)] mt-1">
+            {dict.nemesis.themZones}
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nemesis-radial {
+    background:
+      radial-gradient(circle at 25% 50%, color-mix(in oklab, #4D7FFF 12%, transparent) 0%, transparent 35%),
+      radial-gradient(circle at 75% 50%, color-mix(in oklab, var(--color-accent) 18%, transparent) 0%, transparent 38%);
+  }
+
+  .rider-avatar {
+    position: relative;
+    width: clamp(120px, 18vw, 220px);
+    height: clamp(120px, 18vw, 220px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(40px, 6vw, 72px);
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    box-shadow:
+      0 0 0 1px var(--color-line-2),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.04);
+    transition: transform 400ms var(--ease-spring), box-shadow 300ms var(--ease-soft);
+  }
+  .rider-avatar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .rider-avatar--you::before {
+    background: radial-gradient(circle at 50% 35%, #4D7FFF 0%, #1B3380 70%, #07080C 100%);
+  }
+  .rider-avatar--you {
+    box-shadow:
+      0 0 0 1px rgba(77, 127, 255, 0.4),
+      0 24px 64px -16px rgba(77, 127, 255, 0.4),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+  }
+
+  .rider-avatar--them::before {
+    background: radial-gradient(circle at 50% 35%, #FF1744 0%, #7A0820 70%, #07080C 100%);
+  }
+  .rider-avatar--them {
+    box-shadow:
+      0 0 0 1px rgba(255, 23, 68, 0.55),
+      0 24px 80px -12px rgba(255, 23, 68, 0.55),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+  }
+
+  .rider-pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(77, 127, 255, 0.4);
+    animation: nemesisPulse 2.6s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes nemesisPulse {
+    0%   { transform: scale(0.96); opacity: 0.7; }
+    100% { transform: scale(1.12); opacity: 0; }
+  }
+
+  /* VS divider */
+  .vs-divider {
+    width: 1px;
+    height: clamp(20px, 6vw, 60px);
+    background: linear-gradient(to bottom, transparent, var(--color-line-2), transparent);
+  }
+  .vs-label {
+    font-size: clamp(28px, 5vw, 56px);
+    color: var(--color-accent);
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 24px color-mix(in oklab, var(--color-accent) 40%, transparent);
+    animation: vsBreath 3.2s ease-in-out infinite;
+  }
+  @keyframes vsBreath {
+    0%, 100% { transform: scale(1);    text-shadow: 0 0 24px color-mix(in oklab, var(--color-accent) 30%, transparent); }
+    50%      { transform: scale(1.04); text-shadow: 0 0 36px color-mix(in oklab, var(--color-accent) 55%, transparent); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rider-pulse,
+    .vs-label { animation: none; }
+  }
+</style>

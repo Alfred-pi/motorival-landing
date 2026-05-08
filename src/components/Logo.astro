@@ -1,0 +1,30 @@
+---
+interface Props {
+  height?: number; // px
+  className?: string;
+}
+const { height = 32, className = "" } = Astro.props;
+---
+
+<span class={`inline-flex items-center ${className}`} aria-label="MotoRival">
+  <img
+    src="/logo-dark.svg"
+    alt="MotoRival"
+    width="auto"
+    height={height}
+    style={`height:${height}px;width:auto;`}
+    class="logo-dark"
+    loading="eager"
+    decoding="async"
+  />
+  <img
+    src="/logo-light.svg"
+    alt="MotoRival"
+    width="auto"
+    height={height}
+    style={`height:${height}px;width:auto;`}
+    class="logo-light"
+    loading="eager"
+    decoding="async"
+  />
+</span>
