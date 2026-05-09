@@ -237,6 +237,7 @@ export default function ScreensFancy({ locale }: Props) {
                     style={{ gridArea: "stack", opacity: i === active ? 1 : 0 }}
                   >
                     <DeviceFrame
+                      variant="no-notch"
                       posterSrc={s.src}
                       alt={s.title}
                       loading={i === 0 ? "eager" : "lazy"}
