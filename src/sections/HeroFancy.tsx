@@ -135,9 +135,6 @@ export default function HeroFancy({ locale }: Props) {
                 style={{ height: 54, width: "auto", borderRadius: 10 }}
               />
             </a>
-            <span className="eyebrow text-[var(--color-muted)]">
-              {dict.hero.chips.ios}
-            </span>
           </div>
         </div>
 

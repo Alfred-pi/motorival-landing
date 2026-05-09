@@ -40,7 +40,7 @@ type Dict = {
     sub: string;
     cta: string;
     ctaSecondary: string;
-    chips: { ios: string; languages: string; gps: string; privacy: string };
+    chips: { languages: string; gps: string; privacy: string };
     trust: string[];
   };
   loop: {
@@ -115,7 +115,7 @@ const fr: Dict = {
     sub: 'Roule. Capture des zones. Défends-les contre tes rivaux. Une seule app fait ça pour les motards.',
     cta: 'Télécharger',
     ctaSecondary: 'Voir comment',
-    chips: { ios: 'iPhone only', languages: '6 langues', gps: 'GPS hardened', privacy: 'Privacy-first' },
+    chips: { languages: '6 langues', gps: 'GPS hardened', privacy: 'Privacy-first' },
     trust: [
       'Conçu à Genève',
       'Privacy first',
@@ -231,7 +231,7 @@ const en: Dict = {
     sub: 'Ride. Capture zones. Defend them from rivals. One app built for motorcyclists.',
     cta: 'Download',
     ctaSecondary: 'How it works',
-    chips: { ios: 'iPhone only', languages: '6 languages', gps: 'GPS hardened', privacy: 'Privacy-first' },
+    chips: { languages: '6 languages', gps: 'GPS hardened', privacy: 'Privacy-first' },
     trust: ['Built in Geneva', 'Privacy first', 'No speed scoring', '6 languages'],
   },
   loop: {
@@ -337,7 +337,7 @@ const es: Dict = {
     sub: 'Rueda. Captura zonas. Defiéndelas de tus rivales. Una sola app hecha para motoristas.',
     cta: 'Descargar',
     ctaSecondary: 'Cómo funciona',
-    chips: { ios: 'iPhone only', languages: '6 idiomas', gps: 'GPS reforzado', privacy: 'Privacidad primero' },
+    chips: { languages: '6 idiomas', gps: 'GPS reforzado', privacy: 'Privacidad primero' },
     trust: ['Hecho en Ginebra', 'Privacidad primero', 'Sin puntuación de velocidad', '6 idiomas'],
   },
   loop: {
@@ -428,7 +428,7 @@ const de: Dict = {
     sub: 'Fahre. Erobere Zonen. Verteidige sie. Eine App, gebaut für Motorradfahrer.',
     cta: 'Laden',
     ctaSecondary: 'So funktioniert es',
-    chips: { ios: 'iPhone only', languages: '6 Sprachen', gps: 'GPS hardened', privacy: 'Privacy-first' },
+    chips: { languages: '6 Sprachen', gps: 'GPS hardened', privacy: 'Privacy-first' },
     trust: ['Made in Genf', 'Privacy first', 'Keine Speed-Wertung', '6 Sprachen'],
   },
   loop: {
@@ -504,7 +504,7 @@ const it: Dict = {
     sub: 'Guida. Cattura zone. Difendile dai rivali. Una sola app per motociclisti.',
     cta: 'Scarica',
     ctaSecondary: 'Come funziona',
-    chips: { ios: 'iPhone only', languages: '6 lingue', gps: 'GPS hardened', privacy: 'Privacy-first' },
+    chips: { languages: '6 lingue', gps: 'GPS hardened', privacy: 'Privacy-first' },
     trust: ['Fatto a Ginevra', 'Privacy first', 'Nessun punteggio velocità', '6 lingue'],
   },
   loop: {
@@ -580,7 +580,7 @@ const pt: Dict = {
     sub: 'Pilote. Capture zonas. Defenda-as dos rivais. Um app feito para motociclistas.',
     cta: 'Baixar',
     ctaSecondary: 'Como funciona',
-    chips: { ios: 'iPhone only', languages: '6 idiomas', gps: 'GPS hardened', privacy: 'Privacidade primeiro' },
+    chips: { languages: '6 idiomas', gps: 'GPS hardened', privacy: 'Privacidade primeiro' },
     trust: ['Feito em Genebra', 'Privacidade primeiro', 'Sem score de velocidade', '6 idiomas'],
   },
   loop: {
