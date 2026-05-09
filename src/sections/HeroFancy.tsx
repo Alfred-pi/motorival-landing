@@ -102,7 +102,7 @@ export default function HeroFancy({ locale }: Props) {
           <h1
             className="hero-h1 font-display text-[var(--color-text)]"
             style={{
-              fontSize: "clamp(40px, 9.5vw, 152px)",
+              fontSize: "clamp(36px, 8vw, 128px)",
               lineHeight: 0.92,
               letterSpacing: "-0.045em",
               fontWeight: 900,
