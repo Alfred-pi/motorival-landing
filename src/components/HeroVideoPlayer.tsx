@@ -16,9 +16,9 @@ const CLIPS: Clip[] = [
 /**
  * Three native screen recordings looped inside an iPhone 15 Pro frame
  * (no-notch — the recordings already include the dynamic island).
- * Crossfade between clips animates the WHOLE device (scale + translate
- * + blur) so the swap feels like a phone being replaced, not just the
- * screen flipping.
+ * Frames are perfectly stacked: only the screen content fades. The
+ * device itself stays still — no scale, translate, or blur — so the
+ * iPhone reads as a single object the user is staring at.
  */
 export default function HeroVideoPlayer() {
   const [active, setActive] = useState(0);
@@ -51,17 +51,10 @@ export default function HeroVideoPlayer() {
         return (
           <div
             key={c.src}
-            className="hero-clip"
             style={{
               gridArea: "stack",
               opacity: isActive ? 1 : 0,
-              transform: isActive
-                ? "scale(1) translateY(0)"
-                : "scale(0.94) translateY(12px)",
-              filter: isActive ? "blur(0px)" : "blur(6px)",
-              transition:
-                "opacity 700ms cubic-bezier(0.32, 0.72, 0, 1), transform 900ms cubic-bezier(0.32, 0.72, 0, 1), filter 700ms ease-out",
-              willChange: "opacity, transform, filter",
+              transition: "opacity 600ms ease-out",
               pointerEvents: isActive ? "auto" : "none",
             }}
             aria-hidden={!isActive}

@@ -1,9 +1,11 @@
 ---
 interface Props {
-  height?: number; // px
+  /** Height in px (number) or any CSS height value (string, e.g. "clamp(32px, 4vw, 44px)"). */
+  height?: number | string;
   className?: string;
 }
 const { height = 32, className = "" } = Astro.props;
+const heightCss = typeof height === "number" ? `${height}px` : height;
 ---
 
 <span class={`inline-flex items-center ${className}`} aria-label="MotoRival">
@@ -11,8 +13,7 @@ const { height = 32, className = "" } = Astro.props;
     src={`${import.meta.env.BASE_URL}logo-dark.svg`}
     alt="MotoRival"
     width="auto"
-    height={height}
-    style={`height:${height}px;width:auto;`}
+    style={`height:${heightCss};width:auto;`}
     class="logo-dark"
     loading="eager"
     decoding="async"
@@ -21,8 +22,7 @@ const { height = 32, className = "" } = Astro.props;
     src={`${import.meta.env.BASE_URL}logo-light.svg`}
     alt="MotoRival"
     width="auto"
-    height={height}
-    style={`height:${height}px;width:auto;`}
+    style={`height:${heightCss};width:auto;`}
     class="logo-light"
     loading="eager"
     decoding="async"

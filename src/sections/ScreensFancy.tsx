@@ -169,7 +169,7 @@ export default function ScreensFancy({ locale }: Props) {
 
   return (
     <section ref={root} className="relative hairline-top">
-      <div className="sc-pin w-full lg:h-screen overflow-hidden py-20 lg:py-0 flex items-center">
+      <div className="sc-pin w-full lg:min-h-screen overflow-hidden py-20 lg:py-24 flex items-center">
         <div aria-hidden className="absolute inset-0 -z-10 hex-bg pointer-events-none">
           <svg className="absolute right-0 top-0 h-full w-[55%]" viewBox="-50 -50 700 600" preserveAspectRatio="xMaxYMid slice">
             {Array.from({ length: 60 }).map((_, i) => {
@@ -225,8 +225,8 @@ export default function ScreensFancy({ locale }: Props) {
               ref={phoneRef}
               className="relative will-change-transform"
               style={{
-                width: "clamp(280px, 32vw, 420px)",
-                maxWidth: "min(78vw, 420px)",
+                width: "clamp(220px, 26vw, 340px)",
+                maxWidth: "min(60vw, 340px)",
               }}
             >
               <div

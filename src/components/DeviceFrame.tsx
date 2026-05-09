@@ -95,7 +95,7 @@ export default function DeviceFrame({
         {videoSrc ? (
           <video
             ref={videoRef}
-            className="absolute inset-0 w-full h-full object-contain"
+            className="absolute inset-0 w-full h-full object-cover"
             autoPlay={autoplay && videoActive}
             loop={!onEnded}
             muted

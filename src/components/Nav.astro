@@ -23,7 +23,7 @@ const dict = t(locale);
       class="flex items-center"
       aria-label="MotoRival — home"
     >
-      <Logo height={28} />
+      <Logo height="clamp(34px, 4.2vw, 44px)" />
     </a>
 
     <div class="flex items-center gap-2 md:gap-3">
@@ -40,8 +40,8 @@ const dict = t(locale);
   </div>
 </header>
 
-<!-- Spacer to offset the fixed nav (matches nav height ~56-60px) -->
-<div aria-hidden="true" class="h-[60px]"></div>
+<!-- Spacer matches nav height: 28px (py-3.5 ×2) + clamp(34px,4.2vw,44px) logo. -->
+<div aria-hidden="true" style="height: calc(28px + clamp(34px, 4.2vw, 44px));"></div>
 
 <script>
   const nav = document.querySelector<HTMLElement>("[data-nav]");

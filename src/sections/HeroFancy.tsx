@@ -75,7 +75,7 @@ export default function HeroFancy({ locale }: Props) {
     <section
       ref={root}
       className="hero relative w-full overflow-hidden"
-      style={{ minHeight: "calc(100svh - 60px)" }}
+      style={{ minHeight: "calc(100svh - 28px - clamp(34px, 4.2vw, 44px))" }}
     >
       {/* Hex grid signature background — visible on every viewport.
           Desktop: right half. Mobile/tablet: full width, lower opacity, behind the centered stack. */}
@@ -93,7 +93,7 @@ export default function HeroFancy({ locale }: Props) {
 
       <div
         className="relative mx-auto max-w-[1320px] w-full px-5 sm:px-8 md:px-12 grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center text-center lg:text-left"
-        style={{ minHeight: "calc(100svh - 60px)" }}
+        style={{ minHeight: "calc(100svh - 28px - clamp(34px, 4.2vw, 44px))" }}
       >
         {/* COPY — centered on mobile/tablet, left-aligned on desktop */}
         <div className="hero-stage py-8 md:py-12 flex flex-col items-center lg:items-start">
