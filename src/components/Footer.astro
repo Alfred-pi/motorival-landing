@@ -38,6 +38,11 @@ const dict = t(locale);
         <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.support}</h4>
         <ul class="space-y-3 text-sm">
           <li>
+            <a href={localePath(locale, "/support")} class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
+              {dict.footer.support}
+            </a>
+          </li>
+          <li>
             <a href="mailto:support@motorival.app" class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
               support@motorival.app
             </a>

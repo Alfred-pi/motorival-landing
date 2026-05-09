@@ -1,0 +1,142 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { type Locale } from "../i18n/utils";
+import { getLegalEntry, type LegalSlug } from "../lib/legal";
+import { render } from "astro:content";
+
+interface Props {
+  slug: LegalSlug;
+  locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const entry = await getLegalEntry(slug, locale);
+const { Content } = await render(entry);
+
+const TITLES: Record<LegalSlug, Record<Locale, string>> = {
+  privacy: {
+    fr: "Politique de confidentialité",
+    en: "Privacy Policy",
+    es: "Política de privacidad",
+    de: "Datenschutzerklärung",
+    it: "Informativa sulla privacy",
+    pt: "Política de privacidade",
+  },
+  terms: {
+    fr: "Conditions d'utilisation",
+    en: "Terms of Service",
+    es: "Términos de servicio",
+    de: "Nutzungsbedingungen",
+    it: "Termini di servizio",
+    pt: "Termos de serviço",
+  },
+  support: {
+    fr: "Support",
+    en: "Support",
+    es: "Soporte",
+    de: "Support",
+    it: "Supporto",
+    pt: "Suporte",
+  },
+};
+
+const title = `${TITLES[slug][locale]} — MotoRival`;
+---
+
+<BaseLayout locale={locale} title={title} pagePath={`/${slug}`}>
+  <main class="legal-page mx-auto max-w-[760px] px-6 md:px-10 pt-28 pb-32">
+    <article class="legal-content">
+      <Content />
+    </article>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .legal-page {
+    color: var(--color-text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .legal-content > h1 {
+    font-family: var(--font-display, "Satoshi", system-ui, sans-serif);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 32px;
+    color: var(--color-text);
+  }
+
+  .legal-content > h2 {
+    font-family: var(--font-display, "Satoshi", system-ui, sans-serif);
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 800;
+    margin: 56px 0 16px;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .legal-content > h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+
+  .legal-content > p,
+  .legal-content > ul,
+  .legal-content > ol {
+    margin: 0 0 18px;
+    color: color-mix(in oklab, var(--color-text) 85%, transparent);
+  }
+
+  .legal-content > ul,
+  .legal-content > ol {
+    padding-left: 22px;
+  }
+
+  .legal-content > ul > li,
+  .legal-content > ol > li {
+    margin: 8px 0;
+  }
+
+  .legal-content strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .legal-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 200ms var(--ease-soft);
+  }
+
+  .legal-content a:hover {
+    opacity: 0.75;
+  }
+
+  .legal-content hr {
+    border: 0;
+    border-top: 1px solid var(--color-line);
+    margin: 40px 0;
+  }
+
+  .legal-content code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.92em;
+    background: color-mix(in oklab, var(--color-text) 8%, transparent);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .legal-content blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 16px;
+    margin: 24px 0;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+</style>
