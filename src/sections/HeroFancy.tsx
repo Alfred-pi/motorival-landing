@@ -143,8 +143,11 @@ export default function HeroFancy({ locale }: Props) {
           <div
             className="hero-phone relative"
             style={{
-              width: "clamp(280px, 36vw, 420px)",
-              maxWidth: "min(82vw, 420px)",
+              // Phone aspect is 1419/2796 ≈ 0.508, so height = width × 1.97.
+              // Cap by 38svh to keep height ≤ ~75svh — fits on 14"/15" laptops
+              // (MacBook Air ~880-980 logical px tall) without scrolling.
+              width: "min(clamp(240px, 32vw, 380px), 38svh)",
+              maxWidth: "min(82vw, 380px)",
             }}
           >
             <div
