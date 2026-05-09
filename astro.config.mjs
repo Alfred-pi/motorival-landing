@@ -5,15 +5,13 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 
 // Landing lives on its own URL — NOT motorival.app (that's the mobile app).
-// Currently hosted on GitHub Pages subpath. Will move to a dedicated domain later.
-const SITE_URL = 'https://alfred-pi.github.io';
-const BASE_PATH = '/motorival-landing/';
+// Hosted on GitHub Pages with the custom domain motorival.ch (Infomaniak DNS).
+const SITE_URL = 'https://motorival.ch';
 
 const LOCALES = ['fr', 'en', 'es', 'de', 'it', 'pt'];
 
 export default defineConfig({
   site: SITE_URL,
-  base: BASE_PATH,
   output: 'static',
 
   i18n: {
