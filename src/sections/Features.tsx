@@ -213,7 +213,7 @@ export default function Features({ locale }: Props) {
   return (
     <section ref={root} className="relative py-32 md:py-44 hairline-top">
       <div className="mx-auto max-w-[1320px] px-6 md:px-12">
-        <header className="ft-head max-w-[32ch] mb-20 md:mb-24">
+        <header className="ft-head mb-20 md:mb-24">
           <span className="eyebrow text-[var(--color-muted)] block mb-5">
             {copy.eyebrow}
           </span>
@@ -223,7 +223,7 @@ export default function Features({ locale }: Props) {
           >
             {copy.title}
           </h2>
-          <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-[42ch]">
+          <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-[52ch]">
             {copy.sub}
           </p>
         </header>

@@ -121,7 +121,6 @@ const fr: Dict = {
       'Privacy first',
       'Pas de scoring vitesse',
       '6 langues',
-      '14 jours d’essai',
     ],
   },
   loop: {
@@ -175,19 +174,19 @@ const fr: Dict = {
       },
       {
         q: 'Y a-t-il une version gratuite ?',
-        a: 'Oui, à vie. 1 ride par semaine, capture de hex, leaderboard ville, streak quotidien, Mode Riding. Le Rival Pass débloque les rides illimités, leaderboards mondiaux, crews, Pin-to-Ride, Nemesis, stats avancées.',
+        a: "Oui. Démarrage gratuit avec 1 ride par semaine, capture de zones, leaderboard ville, streak quotidien, Mode Riding. Le Rival Pass débloque rides illimités, leaderboards globaux, crews, Pin-to-Ride, Nemesis, Personas, daily challenges et stats avancées. $2.99/sem ou $49.99/an.",
       },
       {
         q: 'Mes zones expirent ?',
-        a: 'Oui. Les hex roulés decay après 7 jours, les hex remplis après 2-3 jours. Faut rouler pour garder ton territoire vivant.',
+        a: "Si tu ne repasses pas dessus pendant 7 jours, elles commencent à pâlir sur la carte (decay visuel). On te prévient à 18h la veille — bouge pour les défendre.",
       },
       {
         q: 'Android prévu ?',
-        a: "iPhone d'abord. Android coming soon — on suit la même approche que motorival.app, sortie progressive.",
+        a: "iPhone d'abord. Android est sur la roadmap (v2.0) — pas encore de date. Pour l'instant, MotoRival sort uniquement sur iOS.",
       },
       {
         q: 'Comment je supprime mon compte ?',
-        a: 'Settings → Supprimer le compte. Tout est effacé : profil, rides, zones, crew. Aucune trace conservée. RGPD respecté.',
+        a: "Settings → Danger Zone → Supprimer mon compte. Tout est effacé : profil, rides, zones, crew. Si tu as un Rival Pass actif, annule-le séparément dans Réglages iOS → Abonnements (Apple gère, pas nous).",
       },
     ],
   },
@@ -233,7 +232,7 @@ const en: Dict = {
     cta: 'Download',
     ctaSecondary: 'How it works',
     chips: { ios: 'iPhone only', languages: '6 languages', gps: 'GPS hardened', privacy: 'Privacy-first' },
-    trust: ['Built in Geneva', 'Privacy first', 'No speed scoring', '6 languages', '14-day free trial'],
+    trust: ['Built in Geneva', 'Privacy first', 'No speed scoring', '6 languages'],
   },
   loop: {
     eyebrow: 'CORE LOOP',
@@ -286,19 +285,19 @@ const en: Dict = {
       },
       {
         q: 'Is there a free version?',
-        a: 'Yes, forever. 1 ride per week, hex capture, city leaderboard, daily streak, Riding Mode. The Rival Pass unlocks unlimited rides, global leaderboards, crews, Pin-to-Ride, Nemesis, advanced stats.',
+        a: 'Yes. Free start with 1 ride per week, zone capture, city leaderboard, daily streak, Riding Mode. The Rival Pass unlocks unlimited rides, global leaderboards, crews, Pin-to-Ride, Nemesis, Personas, daily challenges and advanced stats. $2.99/week or $49.99/year.',
       },
       {
         q: 'Do my zones expire?',
-        a: 'Yes. Ridden hexes decay after 7 days, filled hexes after 2-3 days. Keep riding to keep your turf alive.',
+        a: "If you don't ride over them for 7 days, they start fading on the map (visual decay). We push you a heads-up at 6pm the day before — go defend them.",
       },
       {
         q: 'Android version?',
-        a: 'iPhone first. Android coming soon — same gradual rollout as motorival.app.',
+        a: 'iPhone first. Android is on the roadmap (v2.0) — no date yet. For now, MotoRival ships only on iOS.',
       },
       {
         q: 'How do I delete my account?',
-        a: 'Settings → Delete account. Everything wiped: profile, rides, zones, crew. No trace kept. GDPR compliant.',
+        a: 'Settings → Danger Zone → Delete my account. Everything wiped: profile, rides, zones, crew. If you have an active Rival Pass, cancel it separately in iOS Settings → Subscriptions (Apple handles billing, not us).',
       },
     ],
   },
@@ -339,7 +338,7 @@ const es: Dict = {
     cta: 'Descargar',
     ctaSecondary: 'Cómo funciona',
     chips: { ios: 'iPhone only', languages: '6 idiomas', gps: 'GPS reforzado', privacy: 'Privacidad primero' },
-    trust: ['Hecho en Ginebra', 'Privacidad primero', 'Sin puntuación de velocidad', '6 idiomas', 'Prueba 14 días'],
+    trust: ['Hecho en Ginebra', 'Privacidad primero', 'Sin puntuación de velocidad', '6 idiomas'],
   },
   loop: {
     eyebrow: 'BUCLE CENTRAL',
@@ -387,10 +386,10 @@ const es: Dict = {
     title: 'Preguntas frecuentes.',
     items: [
       { q: '¿Mide mi velocidad?', a: 'No. Nunca. Decisión de producto. Medimos distancia, tiempo, zonas — no velocidad. Por tu seguridad y la nuestra.' },
-      { q: '¿Hay versión gratis?', a: 'Sí, para siempre. 1 ruta semanal, captura de hex, leaderboard ciudad, racha diaria, Modo Riding. Rival Pass desbloquea rutas ilimitadas, leaderboards globales, crews, Pin-to-Ride, Némesis, stats avanzadas.' },
-      { q: '¿Caducan mis zonas?', a: 'Sí. Hex rodados decaen tras 7 días, hex rellenos tras 2-3 días. Sigue rodando para mantener tu territorio vivo.' },
-      { q: '¿Versión Android?', a: 'iPhone primero. Android coming soon — mismo lanzamiento gradual que motorival.app.' },
-      { q: '¿Cómo elimino mi cuenta?', a: 'Ajustes → Eliminar cuenta. Todo borrado: perfil, rutas, zonas, crew. Sin rastro. RGPD respetado.' },
+      { q: '¿Hay versión gratis?', a: 'Sí. Inicio gratis con 1 ruta semanal, captura de zonas, leaderboard ciudad, racha diaria, Modo Riding. Rival Pass desbloquea rutas ilimitadas, leaderboards globales, crews, Pin-to-Ride, Némesis, Personas, retos diarios y stats avanzadas. $2.99/sem o $49.99/año.' },
+      { q: '¿Caducan mis zonas?', a: 'Si no pasas por encima en 7 días, empiezan a perder color en el mapa (decay visual). Te avisamos a las 18h el día antes — sal a defenderlas.' },
+      { q: '¿Versión Android?', a: 'iPhone primero. Android está en el roadmap (v2.0) — sin fecha aún. De momento, MotoRival sólo sale en iOS.' },
+      { q: '¿Cómo elimino mi cuenta?', a: 'Ajustes → Danger Zone → Eliminar mi cuenta. Todo borrado: perfil, rutas, zonas, crew. Si tienes un Rival Pass activo, cancélalo aparte en Ajustes iOS → Suscripciones (lo gestiona Apple, no nosotros).' },
     ],
   },
   finalCta: {
@@ -430,7 +429,7 @@ const de: Dict = {
     cta: 'Laden',
     ctaSecondary: 'So funktioniert es',
     chips: { ios: 'iPhone only', languages: '6 Sprachen', gps: 'GPS hardened', privacy: 'Privacy-first' },
-    trust: ['Made in Genf', 'Privacy first', 'Keine Speed-Wertung', '6 Sprachen', '14 Tage gratis'],
+    trust: ['Made in Genf', 'Privacy first', 'Keine Speed-Wertung', '6 Sprachen'],
   },
   loop: {
     eyebrow: 'CORE LOOP',
@@ -463,10 +462,10 @@ const de: Dict = {
     title: 'Häufige Fragen.',
     items: [
       { q: 'Misst es meine Geschwindigkeit?', a: 'Nein. Niemals. Produkt-Entscheidung. Wir tracken Distanz, Zeit, Zonen — nicht Speed. Für deine Sicherheit und unsere.' },
-      { q: 'Gibt es eine Gratis-Version?', a: 'Ja, für immer. 1 Ride pro Woche, Hex-Capture, Stadt-Leaderboard, Daily Streak, Riding Mode. Rival Pass schaltet unbegrenzte Rides, globale Leaderboards, Crews, Pin-to-Ride, Nemesis, Advanced Stats frei.' },
-      { q: 'Verfallen meine Zonen?', a: 'Ja. Gefahrene Hex verfallen nach 7 Tagen, gefüllte nach 2-3 Tagen. Fahre weiter, um dein Territorium am Leben zu halten.' },
-      { q: 'Android?', a: 'iPhone zuerst. Android coming soon — gleicher gradueller Rollout wie motorival.app.' },
-      { q: 'Wie lösche ich meinen Account?', a: 'Einstellungen → Account löschen. Alles weg: Profil, Rides, Zonen, Crew. Keine Spur. DSGVO konform.' },
+      { q: 'Gibt es eine Gratis-Version?', a: 'Ja. Gratis-Start mit 1 Ride pro Woche, Zone-Capture, Stadt-Leaderboard, Daily Streak, Riding Mode. Rival Pass schaltet unbegrenzte Rides, globale Leaderboards, Crews, Pin-to-Ride, Nemesis, Personas, Daily Challenges und Advanced Stats frei. $2.99/Woche oder $49.99/Jahr.' },
+      { q: 'Verfallen meine Zonen?', a: 'Wenn du 7 Tage lang nicht drüber fährst, beginnen sie auf der Karte zu verblassen (visueller Decay). Wir benachrichtigen dich um 18 Uhr am Vortag — fahre raus, um sie zu verteidigen.' },
+      { q: 'Android?', a: 'iPhone zuerst. Android steht auf der Roadmap (v2.0) — noch kein Datum. Aktuell erscheint MotoRival nur auf iOS.' },
+      { q: 'Wie lösche ich meinen Account?', a: 'Einstellungen → Danger Zone → Account löschen. Alles weg: Profil, Rides, Zonen, Crew. Wenn du einen aktiven Rival Pass hast, kündige ihn separat in iOS-Einstellungen → Abonnements (Apple verwaltet, nicht wir).' },
     ],
   },
   finalCta: {
@@ -506,7 +505,7 @@ const it: Dict = {
     cta: 'Scarica',
     ctaSecondary: 'Come funziona',
     chips: { ios: 'iPhone only', languages: '6 lingue', gps: 'GPS hardened', privacy: 'Privacy-first' },
-    trust: ['Fatto a Ginevra', 'Privacy first', 'Nessun punteggio velocità', '6 lingue', 'Prova 14 giorni'],
+    trust: ['Fatto a Ginevra', 'Privacy first', 'Nessun punteggio velocità', '6 lingue'],
   },
   loop: {
     eyebrow: 'CORE LOOP',
@@ -539,10 +538,10 @@ const it: Dict = {
     title: 'Domande frequenti.',
     items: [
       { q: 'Misura la velocità?', a: 'No. Mai. Scelta di prodotto. Tracciamo distanza, tempo, zone — non velocità. Per la tua sicurezza e la nostra.' },
-      { q: 'Versione gratuita?', a: 'Sì, per sempre. 1 ride a settimana, cattura hex, classifica città, streak quotidiano, Modalità Riding. Rival Pass sblocca ride illimitati, classifiche globali, crew, Pin-to-Ride, Nemesis, statistiche avanzate.' },
-      { q: 'Le mie zone scadono?', a: 'Sì. Hex guidati decadono dopo 7 giorni, hex riempiti dopo 2-3 giorni. Continua a guidare per tenere vivo il tuo territorio.' },
-      { q: 'Android?', a: 'iPhone prima. Android coming soon — stesso rollout graduale di motorival.app.' },
-      { q: 'Come elimino il mio account?', a: 'Impostazioni → Elimina account. Tutto cancellato: profilo, ride, zone, crew. Nessuna traccia. GDPR rispettato.' },
+      { q: 'Versione gratuita?', a: 'Sì. Avvio gratuito con 1 ride a settimana, cattura zone, classifica città, streak quotidiano, Modalità Riding. Rival Pass sblocca ride illimitati, classifiche globali, crew, Pin-to-Ride, Nemesis, Personas, sfide quotidiane e statistiche avanzate. $2.99/sett o $49.99/anno.' },
+      { q: 'Le mie zone scadono?', a: "Se non ci passi sopra per 7 giorni, iniziano a sbiadire sulla mappa (decay visivo). Ti avvisiamo alle 18 il giorno prima — esci a difenderle." },
+      { q: 'Android?', a: 'iPhone prima. Android è sulla roadmap (v2.0) — nessuna data ancora. Per ora, MotoRival esce solo su iOS.' },
+      { q: 'Come elimino il mio account?', a: 'Impostazioni → Danger Zone → Elimina il mio account. Tutto cancellato: profilo, ride, zone, crew. Se hai un Rival Pass attivo, annullalo a parte in Impostazioni iOS → Abbonamenti (Apple gestisce, non noi).' },
     ],
   },
   finalCta: {
@@ -582,7 +581,7 @@ const pt: Dict = {
     cta: 'Baixar',
     ctaSecondary: 'Como funciona',
     chips: { ios: 'iPhone only', languages: '6 idiomas', gps: 'GPS hardened', privacy: 'Privacidade primeiro' },
-    trust: ['Feito em Genebra', 'Privacidade primeiro', 'Sem score de velocidade', '6 idiomas', '14 dias grátis'],
+    trust: ['Feito em Genebra', 'Privacidade primeiro', 'Sem score de velocidade', '6 idiomas'],
   },
   loop: {
     eyebrow: 'CORE LOOP',
@@ -615,10 +614,10 @@ const pt: Dict = {
     title: 'Perguntas frequentes.',
     items: [
       { q: 'Mede minha velocidade?', a: 'Não. Nunca. Decisão de produto. Trackamos distância, tempo, zonas — não velocidade. Pela sua segurança e a nossa.' },
-      { q: 'Tem versão grátis?', a: 'Sim, pra sempre. 1 ride por semana, captura de hex, ranking cidade, streak diário, Modo Riding. Rival Pass libera rides ilimitados, rankings globais, crews, Pin-to-Ride, Nemesis, stats avançadas.' },
-      { q: 'Minhas zonas expiram?', a: 'Sim. Hex pilotados decaem após 7 dias, hex preenchidos após 2-3 dias. Continue pilotando para manter seu território vivo.' },
-      { q: 'Android?', a: 'iPhone primeiro. Android coming soon — mesmo rollout gradual que motorival.app.' },
-      { q: 'Como deleto minha conta?', a: 'Settings → Deletar conta. Tudo apagado: perfil, rides, zonas, crew. Sem rastros. LGPD respeitada.' },
+      { q: 'Tem versão grátis?', a: 'Sim. Início grátis com 1 ride por semana, captura de zonas, ranking cidade, streak diário, Modo Riding. Rival Pass libera rides ilimitados, rankings globais, crews, Pin-to-Ride, Nemesis, Personas, desafios diários e stats avançadas. $2.99/sem ou $49.99/ano.' },
+      { q: 'Minhas zonas expiram?', a: "Se você não passar por cima delas por 7 dias, começam a desbotar no mapa (decay visual). A gente avisa às 18h na véspera — sai pra defender." },
+      { q: 'Android?', a: 'iPhone primeiro. Android está no roadmap (v2.0) — sem data ainda. Por enquanto, MotoRival sai só no iOS.' },
+      { q: 'Como deleto minha conta?', a: 'Settings → Danger Zone → Deletar minha conta. Tudo apagado: perfil, rides, zonas, crew. Se tem Rival Pass ativo, cancele à parte em Ajustes iOS → Assinaturas (Apple gerencia, não a gente).' },
     ],
   },
   finalCta: {
