@@ -80,11 +80,6 @@ export default function DeviceFrame({
       className={`device-frame relative ${className}`}
       style={{
         aspectRatio: "1419 / 2796",
-        // Slight uniform scale on the whole frame (PNG + inner media).
-        // Hides the 1-2px white seam visible at the screen-window edge in
-        // light mode by pushing the rounded corners past the subpixel
-        // anti-aliasing boundary.
-        transform: "scale(1.02)",
         ...style,
       }}
     >
