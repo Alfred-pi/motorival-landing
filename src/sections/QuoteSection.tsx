@@ -3,13 +3,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
+import { asset } from "../lib/asset";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Props { locale: Locale; }
 
-const PHOTO =
-  "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=2400&q=80&auto=format&fit=crop";
+// Self-hosted hero shot — same image used as the paywall hero in-app, so
+// the brand visual is consistent across the funnel.
+const PHOTO = asset("/media/rider-hero.jpg");
 
 const COPY: Record<Locale, { eyebrow: string; quote: string; cite: string }> = {
   fr: {
