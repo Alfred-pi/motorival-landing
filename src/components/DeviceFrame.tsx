@@ -99,6 +99,7 @@ export default function DeviceFrame({
           <video
             ref={videoRef}
             className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: "scale(1.01)" }}
             autoPlay={autoplay && videoActive}
             loop={!onEnded}
             muted
@@ -116,6 +117,7 @@ export default function DeviceFrame({
             src={posterSrc}
             alt={alt}
             className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: "scale(1.01)" }}
             loading={loading}
             decoding="async"
           />

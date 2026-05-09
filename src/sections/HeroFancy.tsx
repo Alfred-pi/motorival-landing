@@ -59,14 +59,8 @@ export default function HeroFancy({ locale }: Props) {
         gsap.delayedCall(i * 0.4, pulse);
       }
 
-      // Subtle phone hover
-      gsap.to(".hero-phone", {
-        y: -10,
-        duration: 4.5,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
+      // Phone is intentionally still — no float / hover. Only the screen
+      // content swaps inside a fixed device frame.
     },
     { scope: root }
   );
