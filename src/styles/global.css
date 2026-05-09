@@ -240,9 +240,29 @@ html.loaded .hero-stage > *:nth-child(5) { animation-delay: 0.62s; }
   stroke-width: 1;
   transition: fill 600ms var(--ease-soft), stroke 300ms;
 }
+/* Default lit (red) used as a safe fallback. */
 .hex-cell.is-on {
-  fill: color-mix(in oklab, var(--color-accent) 12%, transparent);
-  stroke: color-mix(in oklab, var(--color-accent) 50%, transparent);
+  fill: color-mix(in oklab, var(--color-accent) 14%, transparent);
+  stroke: color-mix(in oklab, var(--color-accent) 55%, transparent);
+}
+/* 4-colour palette — keep red as the brand anchor. The other three are
+   the rider-trail hues already used inside the app (cyan / magenta /
+   amber). Subtle by design so the headline stays the focal point. */
+.hex-cell.is-on--c1 {
+  fill: color-mix(in oklab, var(--color-accent) 16%, transparent);
+  stroke: color-mix(in oklab, var(--color-accent) 60%, transparent);
+}
+.hex-cell.is-on--c2 {
+  fill: color-mix(in oklab, #00e5ff 14%, transparent);
+  stroke: color-mix(in oklab, #00e5ff 55%, transparent);
+}
+.hex-cell.is-on--c3 {
+  fill: color-mix(in oklab, #ff3df0 14%, transparent);
+  stroke: color-mix(in oklab, #ff3df0 55%, transparent);
+}
+.hex-cell.is-on--c4 {
+  fill: color-mix(in oklab, #ffd042 14%, transparent);
+  stroke: color-mix(in oklab, #ffd042 55%, transparent);
 }
 
 /* ─────────────────────────────────────────────

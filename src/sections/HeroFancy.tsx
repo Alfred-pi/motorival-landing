@@ -43,20 +43,24 @@ export default function HeroFancy({ locale }: Props) {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduced) return;
 
-      // Continuous random hex pulse — signature ambient
+      // Continuous random hex pulse — signature ambient.
+      // 4 colour variants (red kept as the primary, joined by cyan, magenta
+      // and gold-yellow — the same hues that appear on rider trails in the
+      // app). 14 concurrent pulses for a denser, more alive grid.
       const allCells = gsap.utils.toArray<SVGPathElement>(".hex-cell");
+      const VARIANTS = ["c1", "c2", "c3", "c4"] as const;
       const pulse = () => {
         const target = gsap.utils.random(allCells);
         if (!target) return;
-        target.classList.add("is-on");
-        gsap.delayedCall(gsap.utils.random(0.8, 2.2), () => {
-          target.classList.remove("is-on");
+        const variant = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
+        target.classList.add("is-on", `is-on--${variant}`);
+        gsap.delayedCall(gsap.utils.random(0.5, 1.6), () => {
+          target.classList.remove("is-on", `is-on--${variant}`);
           pulse();
         });
       };
-      // Stagger initial pulses
-      for (let i = 0; i < 5; i++) {
-        gsap.delayedCall(i * 0.4, pulse);
+      for (let i = 0; i < 14; i++) {
+        gsap.delayedCall(i * 0.18, pulse);
       }
 
       // Phone is intentionally still — no float / hover. Only the screen
