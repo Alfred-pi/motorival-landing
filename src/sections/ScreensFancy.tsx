@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
-import DeviceFrame from "../components/DeviceFrame";
 import { asset } from "../lib/asset";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -19,80 +18,80 @@ const SLIDE_KEYS = ["map", "capture", "ride", "profil", "crew", "leaderbord"] as
 const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides: SlideCopy[] }> = {
   fr: {
     eyebrow: "L'APP",
-    title: "Six écrans. Zéro friction.",
-    sub: "Pendant le ride : aucun tap. Après : tout devient lisible.",
+    title: "Tu rides. L'app empile.",
+    sub: "Pendant le ride : aucun tap. Après : chaque chiffre se lit en deux secondes.",
     slides: [
-      { number: "01", title: "Le terrain te précède.", desc: "Hexagones rouges, verts, bleus déjà peints. C'est le score des autres. À toi de le reprendre." },
-      { number: "02", title: "Tape l'ennemi.", desc: "Sur ses zones, en plein ride. Bécane, km², série. Tu sais à qui tu prends quoi." },
-      { number: "03", title: "Pas une trace. Un butin.", desc: "Chaque run empile des zones gagnées — ou perdues. Hier 18:23, +1. Ce matin, +12." },
-      { number: "04", title: "Ta vraie carte de visite.", desc: "Série, rang, km² tenus, zones volées. La signature de ton mois en un écran." },
-      { number: "05", title: "Quand un solo ne suffit plus.", desc: "Ton crew empile les km². Six motards, un même rouge, un seul terrain." },
-      { number: "06", title: "Le ranking n'est pas un trophée.", desc: "C'est l'état du terrain. Monde, Suisse, Rivals, Crews — un seul score : km² capturés." },
+      { number: "01", title: "Démarre à 0. Eux, non.", desc: "Rouge, vert, bleu : ces hexagones sont déjà signés. Ton premier kilomètre va effacer un nom." },
+      { number: "02", title: "Sa bécane est une CBR.", desc: "Tape un hex en plein ride. Vois la moto qui l'a peint. Décide en deux secondes si tu lui reprends." },
+      { number: "03", title: "Pas un parcours. Un compteur.", desc: "Chaque ride se compte en zones, pas en kilomètres. Hier 18:23 → +1. Mer. 6, 17:03 → +12." },
+      { number: "04", title: "Tenues : 47. Volées : 15.", desc: "Bécane en titre. Série en jours. 47 zones tenues, 15 reprises sur toi. La vérité de ton mois." },
+      { number: "05", title: "Six rouges deviennent un rouge.", desc: "RuffRiders : 6 motards, 663 km² ce mois. Vos rouges fusionnent. La carte devient territoire." },
+      { number: "06", title: "Le P1 a un nom : ROCKETViper.", desc: "Quatre échelles, une seule monnaie : km² capturés. ROCKETViper est à 22.0. Tu sais ce qu'il te reste à faire." },
     ],
   },
   en: {
     eyebrow: "THE APP",
-    title: "Six screens. Zero friction.",
-    sub: "Mid-ride: zero taps. After: every line readable.",
+    title: "You ride. The app stacks.",
+    sub: "Mid-ride: zero taps. Off the bike: every number readable in two seconds.",
     slides: [
-      { number: "01", title: "The map is already painted.", desc: "Red, green, blue hexes — already taken. That's their score. Your turn to take it back." },
-      { number: "02", title: "Tap the rival.", desc: "Mid-ride. On their zones. Bike, km², streak. You know exactly what you're stealing." },
-      { number: "03", title: "Not a trace. A haul.", desc: "Every run stacks zones won — or lost. Yesterday 18:23, +1. This morning, +12." },
-      { number: "04", title: "Your real ride card.", desc: "Streak, rank, km² held, zones stolen. Your month's signature in one screen." },
-      { number: "05", title: "When solo isn't enough.", desc: "Your crew stacks km². Six riders, one red, one terrain." },
-      { number: "06", title: "Ranking isn't a trophy.", desc: "It's the state of the terrain. Global, region, rivals, crews — one score: km² captured." },
+      { number: "01", title: "Start at 0. They didn't.", desc: "Red, green, blue — those hexes are already signed. Your first kilometer erases a name." },
+      { number: "02", title: "His bike is a CBR.", desc: "Tap any hex mid-ride. See the bike that painted it. Decide in two seconds if you take it back." },
+      { number: "03", title: "Not a route. A tally.", desc: "Every ride counts in zones, not kilometers. Yesterday 18:23 → +1. Wed 6, 17:03 → +12." },
+      { number: "04", title: "Held: 47. Stolen back: 15.", desc: "Your bike on top. Streak in days. 47 zones held, 15 taken from you. The truth of your month." },
+      { number: "05", title: "Six reds become one red.", desc: "RuffRiders: 6 riders, 663 km² this month. Your reds merge. The map turns into territory." },
+      { number: "06", title: "P1 has a name: ROCKETViper.", desc: "Four scales, one currency: km² captured. ROCKETViper sits at 22.0. You know what you have left to do." },
     ],
   },
   es: {
     eyebrow: "LA APP",
-    title: "Seis pantallas. Cero fricción.",
-    sub: "En pleno ride: cero toques. Después: todo se vuelve legible.",
+    title: "Tú ruedas. La app suma.",
+    sub: "En pleno ride: cero toques. Fuera de la moto: cada cifra legible en dos segundos.",
     slides: [
-      { number: "01", title: "El terreno te precede.", desc: "Hexágonos rojos, verdes, azules ya pintados. Ese es su puntaje. Te toca recuperarlo." },
-      { number: "02", title: "Toca al rival.", desc: "En sus zonas. En pleno ride. Moto, km², racha. Sabes exactamente qué le robas." },
-      { number: "03", title: "No una traza. Un botín.", desc: "Cada run apila zonas ganadas — o perdidas. Ayer 18:23, +1. Esta mañana, +12." },
-      { number: "04", title: "Tu carta real.", desc: "Racha, rango, km² tenidos, zonas robadas. La firma de tu mes en una pantalla." },
-      { number: "05", title: "Cuando solo ya no basta.", desc: "Tu crew apila km². Seis riders, un mismo rojo, un solo terreno." },
-      { number: "06", title: "El ranking no es un trofeo.", desc: "Es el estado del terreno. Mundo, región, rivals, crews — un solo marcador: km² capturados." },
+      { number: "01", title: "Arranca en 0. Ellos no.", desc: "Rojo, verde, azul: esos hexágonos ya están firmados. Tu primer kilómetro borra un nombre." },
+      { number: "02", title: "Su moto es una CBR.", desc: "Toca un hex en pleno ride. Mira la moto que lo pintó. Decide en dos segundos si se lo arrebatas." },
+      { number: "03", title: "No una ruta. Una cuenta.", desc: "Cada ride se mide en zonas, no en kilómetros. Ayer 18:23 → +1. Mié 6, 17:03 → +12." },
+      { number: "04", title: "Tenidas: 47. Perdidas: 15.", desc: "Moto arriba. Racha en días. 47 zonas tenidas, 15 robadas. La verdad de tu mes." },
+      { number: "05", title: "Seis rojos, un solo rojo.", desc: "RuffRiders: 6 riders, 663 km² este mes. Vuestros rojos se funden. El mapa se vuelve territorio." },
+      { number: "06", title: "El P1 se llama ROCKETViper.", desc: "Cuatro escalas, una sola moneda: km² capturados. ROCKETViper está en 22.0. Sabes lo que te queda." },
     ],
   },
   de: {
     eyebrow: "DIE APP",
-    title: "Sechs Screens. Null Friction.",
-    sub: "Während der Fahrt: null Taps. Danach: alles lesbar.",
+    title: "Du fährst. Die App stapelt.",
+    sub: "Während der Fahrt: null Taps. Danach: jede Zahl in zwei Sekunden lesbar.",
     slides: [
-      { number: "01", title: "Das Terrain ist schon da.", desc: "Rote, grüne, blaue Hexagons — schon bemalt. Das ist ihr Score. Hol ihn dir." },
-      { number: "02", title: "Tippe den Rival.", desc: "Auf seine Zonen. Mitten im Ride. Maschine, km², Streak. Du weißt, was du klaust." },
-      { number: "03", title: "Keine Spur. Eine Beute.", desc: "Jeder Ride stapelt gewonnene — oder verlorene Zonen. Gestern 18:23, +1. Heute Morgen, +12." },
-      { number: "04", title: "Deine echte Visitenkarte.", desc: "Streak, Rang, gehaltene km², gestohlene Zonen. Die Signatur deines Monats in einem Screen." },
-      { number: "05", title: "Wenn solo nicht reicht.", desc: "Dein Crew stapelt km². Sechs Riders, ein Rot, ein Terrain." },
-      { number: "06", title: "Ranking ist keine Trophäe.", desc: "Es ist der Stand des Terrains. Welt, Region, Rivals, Crews — ein Score: erfasste km²." },
+      { number: "01", title: "Du startest bei 0. Sie nicht.", desc: "Rot, grün, blau — diese Hexagons sind schon signiert. Dein erster Kilometer löscht einen Namen." },
+      { number: "02", title: "Seine Maschine ist eine CBR.", desc: "Tippe einen Hex mitten im Ride. Sieh die Maschine, die ihn bemalt hat. Entscheide in zwei Sekunden, ob du sie zurückholst." },
+      { number: "03", title: "Keine Strecke. Ein Zählerstand.", desc: "Jeder Ride zählt in Zonen, nicht in Kilometern. Gestern 18:23 → +1. Mi 6, 17:03 → +12." },
+      { number: "04", title: "Gehalten: 47. Geklaut: 15.", desc: "Maschine oben. Streak in Tagen. 47 Zonen gehalten, 15 von dir genommen. Die Wahrheit deines Monats." },
+      { number: "05", title: "Sechs Rot werden ein Rot.", desc: "RuffRiders: 6 Riders, 663 km² diesen Monat. Eure Rot verschmilzt. Die Karte wird zum Gebiet." },
+      { number: "06", title: "P1 heißt ROCKETViper.", desc: "Vier Skalen, eine Währung: erfasste km². ROCKETViper liegt bei 22.0. Du weißt, was dir bleibt." },
     ],
   },
   it: {
     eyebrow: "L'APP",
-    title: "Sei schermate. Zero attriti.",
-    sub: "In pieno ride: zero tap. Dopo: tutto diventa leggibile.",
+    title: "Tu vai. L'app accumula.",
+    sub: "In pieno ride: zero tap. Dopo: ogni cifra leggibile in due secondi.",
     slides: [
-      { number: "01", title: "Il terreno ti precede.", desc: "Esagoni rossi, verdi, blu — già dipinti. Quello è il loro punteggio. Riprendilo." },
-      { number: "02", title: "Tocca il rivale.", desc: "Sulle sue zone. In pieno ride. Moto, km², serie. Sai cosa gli stai rubando." },
-      { number: "03", title: "Non una traccia. Un bottino.", desc: "Ogni ride accumula zone vinte — o perse. Ieri 18:23, +1. Stamattina, +12." },
-      { number: "04", title: "La tua carta vera.", desc: "Serie, grado, km² tenuti, zone rubate. La firma del tuo mese in una schermata." },
-      { number: "05", title: "Quando da solo non basta.", desc: "Il tuo crew accumula km². Sei rider, un solo rosso, un solo terreno." },
-      { number: "06", title: "La classifica non è un trofeo.", desc: "È lo stato del terreno. Mondo, regione, rivals, crews — un solo punteggio: km² catturati." },
+      { number: "01", title: "Parti da 0. Loro no.", desc: "Rosso, verde, blu: quegli esagoni sono già firmati. Il tuo primo chilometro cancella un nome." },
+      { number: "02", title: "La sua moto è una CBR.", desc: "Tocca un esagono in pieno ride. Vedi la moto che l'ha dipinto. Decidi in due secondi se gliela togli." },
+      { number: "03", title: "Non un percorso. Un conto.", desc: "Ogni ride si misura in zone, non in chilometri. Ieri 18:23 → +1. Mer 6, 17:03 → +12." },
+      { number: "04", title: "Tenute: 47. Rubate: 15.", desc: "Moto in cima. Serie in giorni. 47 zone tenute, 15 prese su di te. La verità del tuo mese." },
+      { number: "05", title: "Sei rossi, un solo rosso.", desc: "RuffRiders: 6 rider, 663 km² questo mese. I vostri rossi si fondono. La mappa diventa territorio." },
+      { number: "06", title: "Il P1 si chiama ROCKETViper.", desc: "Quattro scale, una sola moneta: km² catturati. ROCKETViper è a 22.0. Sai cosa ti resta da fare." },
     ],
   },
   pt: {
     eyebrow: "O APP",
-    title: "Seis telas. Zero atrito.",
-    sub: "Em pleno ride: zero toques. Depois: tudo se torna legível.",
+    title: "Você anda. O app empilha.",
+    sub: "Em pleno ride: zero toques. Depois: cada número legível em dois segundos.",
     slides: [
-      { number: "01", title: "O território te precede.", desc: "Hexágonos vermelhos, verdes, azuis — já pintados. Esse é o placar deles. Bora retomar." },
-      { number: "02", title: "Toque no rival.", desc: "Nas zonas dele. Em pleno ride. Moto, km², série. Você sabe o que está roubando." },
-      { number: "03", title: "Não um trace. Um butim.", desc: "Cada ride empilha zonas ganhas — ou perdidas. Ontem 18:23, +1. Esta manhã, +12." },
-      { number: "04", title: "Seu cartão real.", desc: "Série, rank, km² mantidos, zonas roubadas. A assinatura do seu mês em uma tela." },
-      { number: "05", title: "Quando solo não basta.", desc: "Seu crew empilha km². Seis riders, um vermelho, um território." },
-      { number: "06", title: "Ranking não é troféu.", desc: "É o estado do território. Mundo, região, rivais, crews — um placar: km² capturados." },
+      { number: "01", title: "Começa em 0. Eles não.", desc: "Vermelho, verde, azul — esses hexágonos já estão assinados. Seu primeiro quilômetro apaga um nome." },
+      { number: "02", title: "A moto dele é uma CBR.", desc: "Toque num hex em pleno ride. Veja a moto que pintou. Decide em dois segundos se você toma de volta." },
+      { number: "03", title: "Não uma rota. Uma conta.", desc: "Cada ride conta em zonas, não em quilômetros. Ontem 18:23 → +1. Qua 6, 17:03 → +12." },
+      { number: "04", title: "Mantidas: 47. Roubadas: 15.", desc: "Moto no topo. Série em dias. 47 zonas mantidas, 15 tiradas de você. A verdade do seu mês." },
+      { number: "05", title: "Seis vermelhos, um só vermelho.", desc: "RuffRiders: 6 riders, 663 km² este mês. Os vermelhos de vocês se fundem. O mapa vira território." },
+      { number: "06", title: "O P1 se chama ROCKETViper.", desc: "Quatro escalas, uma só moeda: km² capturados. ROCKETViper está em 22.0. Você sabe o que te resta." },
     ],
   },
 };
@@ -249,11 +248,15 @@ export default function ScreensFancy({ locale }: Props) {
                     className="transition-opacity duration-700 ease-out"
                     style={{ gridArea: "stack", opacity: i === active ? 1 : 0 }}
                   >
-                    <DeviceFrame
-                      variant="no-notch"
-                      posterSrc={s.src}
+                    {/* Screenshots already include the iPhone chassis — render
+                        them bare, no DeviceFrame wrapper. */}
+                    <img
+                      src={s.src}
                       alt={s.title}
+                      className="block w-full h-auto select-none"
                       loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      draggable={false}
                     />
                   </div>
                 ))}
