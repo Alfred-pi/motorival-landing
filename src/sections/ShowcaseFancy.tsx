@@ -13,10 +13,11 @@ interface Props {
 
 const SCREENS = [
   { src: asset("/screens/us/map-us.png"), caption: "Living territory" },
-  { src: asset("/screens/us/map-user-details-us.png"), caption: "Tap a rider" },
-  { src: asset("/screens/us/map-user-details-us2.png"), caption: "Rivalry stats" },
-  { src: asset("/screens/us/user-profil-us.png"), caption: "Your persona" },
-  { src: asset("/screens/us/old-rides-us.png"), caption: "Ride history" },
+  { src: asset("/screens/us/capture-us.png"), caption: "Tap a rider" },
+  { src: asset("/screens/us/crew-us.png"), caption: "Crew turf" },
+  { src: asset("/screens/us/profil-us.png"), caption: "Your persona" },
+  { src: asset("/screens/us/ride-us.png"), caption: "Ride history" },
+  { src: asset("/screens/us/leaderbord-us.png"), caption: "Leaderboard" },
   { src: asset("/screens/us/paywall-us.png"), caption: "Rival Pass" },
 ];
 

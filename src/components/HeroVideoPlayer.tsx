@@ -9,8 +9,8 @@ interface Clip {
 
 const CLIPS: Clip[] = [
   { src: asset("/media/map-discovery-v2.mp4"), poster: asset("/screens/us/map-us.png") },
-  { src: asset("/media/rival-zone-v2.mp4"), poster: asset("/screens/us/map-user-details-us.png") },
-  { src: asset("/media/leaderboard-v2.mp4"), poster: asset("/screens/us/old-rides-us.png") },
+  { src: asset("/media/rival-zone-v2.mp4"), poster: asset("/screens/us/capture-us.png") },
+  { src: asset("/media/leaderboard-v2.mp4"), poster: asset("/screens/us/leaderbord-us.png") },
 ];
 
 /**

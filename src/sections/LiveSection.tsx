@@ -60,8 +60,8 @@ export default function LiveSection({ locale }: Props) {
 
   const clips: Clip[] = [
     { posterSrc: asset("/screens/us/map-us.png"), videoSrc: asset("/media/map-discovery-540.mp4"), caption: copy.clips[0] },
-    { posterSrc: asset("/screens/us/map-user-details-us.png"), videoSrc: asset("/media/rival-zone-540.mp4"), caption: copy.clips[1] },
-    { posterSrc: asset("/screens/us/user-profil-us.png"), videoSrc: asset("/media/level-up-540.mp4"), caption: copy.clips[2] },
+    { posterSrc: asset("/screens/us/capture-us.png"), videoSrc: asset("/media/rival-zone-540.mp4"), caption: copy.clips[1] },
+    { posterSrc: asset("/screens/us/profil-us.png"), videoSrc: asset("/media/level-up-540.mp4"), caption: copy.clips[2] },
   ];
 
   useGSAP(

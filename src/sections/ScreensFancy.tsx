@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -10,78 +10,89 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Props { locale: Locale; }
 
-interface Slide {
-  src: string;
-  number: string;
-  title: string;
-  desc: string;
-}
+interface SlideCopy { number: string; title: string; desc: string; }
 
-const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides: Slide[] }> = {
+// Six native screens, six narrative beats. Order is intentional:
+// terrain → mid-ride interaction → loot history → identity → collective → global ranking.
+const SLIDE_KEYS = ["map", "capture", "ride", "profil", "crew", "leaderbord"] as const;
+
+const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides: SlideCopy[] }> = {
   fr: {
     eyebrow: "L'APP",
-    title: "Quatre écrans. Une obsession.",
-    sub: "Chaque vue est conçue pour ne jamais te ralentir.",
+    title: "Six écrans. Zéro friction.",
+    sub: "Pendant le ride : aucun tap. Après : tout devient lisible.",
     slides: [
-      { src: asset("/screens/us/map-us.png"), number: "01", title: "Carte vivante.", desc: "Mise à jour en continu. Auto-capture. Aucun tap pendant le ride." },
-      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tape un rider.", desc: "Vois la rivalité, l'historique, la couleur du crew. Tout est à un tap." },
-      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-révélée.", desc: "Six personas détectées sur tes 30 derniers rides. Ta signature émerge." },
-      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Historique propre.", desc: "Tes runs, tes records, tes zones gagnées et perdues. Sobre, lisible." },
+      { number: "01", title: "Le terrain te précède.", desc: "Hexagones rouges, verts, bleus déjà peints. C'est le score des autres. À toi de le reprendre." },
+      { number: "02", title: "Tape l'ennemi.", desc: "Sur ses zones, en plein ride. Bécane, km², série. Tu sais à qui tu prends quoi." },
+      { number: "03", title: "Pas une trace. Un butin.", desc: "Chaque run empile des zones gagnées — ou perdues. Hier 18:23, +1. Ce matin, +12." },
+      { number: "04", title: "Ta vraie carte de visite.", desc: "Série, rang, km² tenus, zones volées. La signature de ton mois en un écran." },
+      { number: "05", title: "Quand un solo ne suffit plus.", desc: "Ton crew empile les km². Six motards, un même rouge, un seul terrain." },
+      { number: "06", title: "Le ranking n'est pas un trophée.", desc: "C'est l'état du terrain. Monde, Suisse, Rivals, Crews — un seul score : km² capturés." },
     ],
   },
   en: {
     eyebrow: "THE APP",
-    title: "Four screens. One obsession.",
-    sub: "Every view is built to never slow you down.",
+    title: "Six screens. Zero friction.",
+    sub: "Mid-ride: zero taps. After: every line readable.",
     slides: [
-      { src: asset("/screens/us/map-us.png"), number: "01", title: "Living map.", desc: "Continuously updated. Auto-capture. Zero taps during the ride." },
-      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tap a rider.", desc: "See the rivalry, history, crew color. Everything's one tap away." },
-      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Auto-revealed persona.", desc: "Six personas detected from your last 30 rides. Your signature emerges." },
-      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Clean history.", desc: "Your runs, records, zones won and lost. Quiet and readable." },
+      { number: "01", title: "The map is already painted.", desc: "Red, green, blue hexes — already taken. That's their score. Your turn to take it back." },
+      { number: "02", title: "Tap the rival.", desc: "Mid-ride. On their zones. Bike, km², streak. You know exactly what you're stealing." },
+      { number: "03", title: "Not a trace. A haul.", desc: "Every run stacks zones won — or lost. Yesterday 18:23, +1. This morning, +12." },
+      { number: "04", title: "Your real ride card.", desc: "Streak, rank, km² held, zones stolen. Your month's signature in one screen." },
+      { number: "05", title: "When solo isn't enough.", desc: "Your crew stacks km². Six riders, one red, one terrain." },
+      { number: "06", title: "Ranking isn't a trophy.", desc: "It's the state of the terrain. Global, region, rivals, crews — one score: km² captured." },
     ],
   },
   es: {
     eyebrow: "LA APP",
-    title: "Cuatro pantallas. Una obsesión.",
-    sub: "Cada vista está hecha para nunca frenarte.",
+    title: "Seis pantallas. Cero fricción.",
+    sub: "En pleno ride: cero toques. Después: todo se vuelve legible.",
     slides: [
-      { src: asset("/screens/us/map-us.png"), number: "01", title: "Mapa vivo.", desc: "Actualizado en tiempo real. Auto-captura. Cero toques durante la ruta." },
-      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Toca un rider.", desc: "Ves la rivalidad, el historial, el color del crew. Todo a un toque." },
-      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-revelada.", desc: "Seis personas detectadas en tus 30 últimas rutas. Tu firma emerge." },
-      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Historial limpio.", desc: "Tus rutas, récords, zonas ganadas y perdidas. Sobrio, legible." },
+      { number: "01", title: "El terreno te precede.", desc: "Hexágonos rojos, verdes, azules ya pintados. Ese es su puntaje. Te toca recuperarlo." },
+      { number: "02", title: "Toca al rival.", desc: "En sus zonas. En pleno ride. Moto, km², racha. Sabes exactamente qué le robas." },
+      { number: "03", title: "No una traza. Un botín.", desc: "Cada run apila zonas ganadas — o perdidas. Ayer 18:23, +1. Esta mañana, +12." },
+      { number: "04", title: "Tu carta real.", desc: "Racha, rango, km² tenidos, zonas robadas. La firma de tu mes en una pantalla." },
+      { number: "05", title: "Cuando solo ya no basta.", desc: "Tu crew apila km². Seis riders, un mismo rojo, un solo terreno." },
+      { number: "06", title: "El ranking no es un trofeo.", desc: "Es el estado del terreno. Mundo, región, rivals, crews — un solo marcador: km² capturados." },
     ],
   },
   de: {
     eyebrow: "DIE APP",
-    title: "Vier Screens. Eine Obsession.",
-    sub: "Jede Ansicht ist gebaut, um dich nie auszubremsen.",
+    title: "Sechs Screens. Null Friction.",
+    sub: "Während der Fahrt: null Taps. Danach: alles lesbar.",
     slides: [
-      { src: asset("/screens/us/map-us.png"), number: "01", title: "Lebendige Karte.", desc: "Live aktualisiert. Auto-Capture. Null Taps während der Fahrt." },
-      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tippe einen Rider.", desc: "Rivalität, Historie, Crew-Farbe. Alles nur einen Tap entfernt." },
-      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Auto-Persona.", desc: "Sechs Personas aus deinen letzten 30 Rides. Deine Signatur entsteht." },
-      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Saubere Historie.", desc: "Deine Rides, Rekorde, gewonnene und verlorene Zonen. Ruhig, lesbar." },
+      { number: "01", title: "Das Terrain ist schon da.", desc: "Rote, grüne, blaue Hexagons — schon bemalt. Das ist ihr Score. Hol ihn dir." },
+      { number: "02", title: "Tippe den Rival.", desc: "Auf seine Zonen. Mitten im Ride. Maschine, km², Streak. Du weißt, was du klaust." },
+      { number: "03", title: "Keine Spur. Eine Beute.", desc: "Jeder Ride stapelt gewonnene — oder verlorene Zonen. Gestern 18:23, +1. Heute Morgen, +12." },
+      { number: "04", title: "Deine echte Visitenkarte.", desc: "Streak, Rang, gehaltene km², gestohlene Zonen. Die Signatur deines Monats in einem Screen." },
+      { number: "05", title: "Wenn solo nicht reicht.", desc: "Dein Crew stapelt km². Sechs Riders, ein Rot, ein Terrain." },
+      { number: "06", title: "Ranking ist keine Trophäe.", desc: "Es ist der Stand des Terrains. Welt, Region, Rivals, Crews — ein Score: erfasste km²." },
     ],
   },
   it: {
     eyebrow: "L'APP",
-    title: "Quattro schermate. Un'ossessione.",
-    sub: "Ogni vista è pensata per non rallentarti mai.",
+    title: "Sei schermate. Zero attriti.",
+    sub: "In pieno ride: zero tap. Dopo: tutto diventa leggibile.",
     slides: [
-      { src: asset("/screens/us/map-us.png"), number: "01", title: "Mappa viva.", desc: "Aggiornata in tempo reale. Cattura automatica. Zero tap durante il ride." },
-      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Tocca un rider.", desc: "Rivalità, cronologia, colore del crew. Tutto a un tap." },
-      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-rivelata.", desc: "Sei personas dai tuoi ultimi 30 ride. La tua firma emerge." },
-      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Cronologia pulita.", desc: "I tuoi ride, record, zone vinte e perse. Sobria, leggibile." },
+      { number: "01", title: "Il terreno ti precede.", desc: "Esagoni rossi, verdi, blu — già dipinti. Quello è il loro punteggio. Riprendilo." },
+      { number: "02", title: "Tocca il rivale.", desc: "Sulle sue zone. In pieno ride. Moto, km², serie. Sai cosa gli stai rubando." },
+      { number: "03", title: "Non una traccia. Un bottino.", desc: "Ogni ride accumula zone vinte — o perse. Ieri 18:23, +1. Stamattina, +12." },
+      { number: "04", title: "La tua carta vera.", desc: "Serie, grado, km² tenuti, zone rubate. La firma del tuo mese in una schermata." },
+      { number: "05", title: "Quando da solo non basta.", desc: "Il tuo crew accumula km². Sei rider, un solo rosso, un solo terreno." },
+      { number: "06", title: "La classifica non è un trofeo.", desc: "È lo stato del terreno. Mondo, regione, rivals, crews — un solo punteggio: km² catturati." },
     ],
   },
   pt: {
     eyebrow: "O APP",
-    title: "Quatro telas. Uma obsessão.",
-    sub: "Cada vista foi feita para nunca te atrasar.",
+    title: "Seis telas. Zero atrito.",
+    sub: "Em pleno ride: zero toques. Depois: tudo se torna legível.",
     slides: [
-      { src: asset("/screens/us/map-us.png"), number: "01", title: "Mapa vivo.", desc: "Atualizado em tempo real. Auto-captura. Zero toques durante o ride." },
-      { src: asset("/screens/us/map-user-details-us.png"), number: "02", title: "Toque um rider.", desc: "Rivalidade, histórico, cor do crew. Tudo a um toque." },
-      { src: asset("/screens/us/user-profil-us.png"), number: "03", title: "Persona auto-revelada.", desc: "Seis personas dos seus últimos 30 rides. Sua assinatura emerge." },
-      { src: asset("/screens/us/old-rides-us.png"), number: "04", title: "Histórico limpo.", desc: "Seus rides, recordes, zonas ganhas e perdidas. Sóbrio, legível." },
+      { number: "01", title: "O território te precede.", desc: "Hexágonos vermelhos, verdes, azuis — já pintados. Esse é o placar deles. Bora retomar." },
+      { number: "02", title: "Toque no rival.", desc: "Nas zonas dele. Em pleno ride. Moto, km², série. Você sabe o que está roubando." },
+      { number: "03", title: "Não um trace. Um butim.", desc: "Cada ride empilha zonas ganhas — ou perdidas. Ontem 18:23, +1. Esta manhã, +12." },
+      { number: "04", title: "Seu cartão real.", desc: "Série, rank, km² mantidos, zonas roubadas. A assinatura do seu mês em uma tela." },
+      { number: "05", title: "Quando solo não basta.", desc: "Seu crew empilha km². Seis riders, um vermelho, um território." },
+      { number: "06", title: "Ranking não é troféu.", desc: "É o estado do território. Mundo, região, rivais, crews — um placar: km² capturados." },
     ],
   },
 };
@@ -90,13 +101,18 @@ export default function ScreensFancy({ locale }: Props) {
   const root = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const copy = COPY[locale];
-  const slides = copy.slides;
+
+  // FR ships native French shots; every other locale uses the US set.
+  const region: "fr" | "us" = locale === "fr" ? "fr" : "us";
+  const slides = SLIDE_KEYS.map((key, i) => ({
+    src: asset(`/screens/${region}/${key}-${region}.png`),
+    ...copy.slides[i],
+  }));
 
   useGSAP(
     () => {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      // Header reveal
       gsap.from(".sc-head > *", {
         scrollTrigger: { trigger: ".sc-head", start: "top 80%" },
         opacity: 0,
@@ -109,16 +125,15 @@ export default function ScreensFancy({ locale }: Props) {
 
       if (reduced) return;
 
-      // Pin + sticky scroll only on desktop. On mobile the section becomes
-      // a single column and slides advance via an auto-rotating timer (no
-      // 300vh of empty scroll on a phone).
       const matchMedia = gsap.matchMedia();
 
+      // Desktop pin + sticky scroll. Depth scales with slide count so each
+      // slide gets the same scroll budget regardless of how many we ship.
       matchMedia.add("(min-width: 1024px)", () => {
         ScrollTrigger.create({
           trigger: root.current,
           start: "top top",
-          end: () => "+=" + window.innerHeight * 3,
+          end: () => "+=" + window.innerHeight * (slides.length - 1),
           pin: ".sc-pin",
           scrub: false,
           snap: {
@@ -137,21 +152,19 @@ export default function ScreensFancy({ locale }: Props) {
         });
       });
 
-      // Mobile: auto-rotate every 4 seconds, no pin
+      // Mobile: auto-rotate every 3.5s. 6 slides × 3.5 = ~21s loop.
       matchMedia.add("(max-width: 1023px)", () => {
         let i = 0;
         const id = window.setInterval(() => {
           i = (i + 1) % slides.length;
           setActive(i);
-        }, 4000);
+        }, 3500);
         return () => window.clearInterval(id);
       });
     },
     { scope: root, dependencies: [slides.length] }
   );
 
-  // Phone is intentionally still — no float / no scale animation, so the
-  // device reads as a single object the user is staring at.
   const phoneRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -189,7 +202,7 @@ export default function ScreensFancy({ locale }: Props) {
             </p>
 
             {/* Step indicator */}
-            <div className="flex items-center gap-3 mt-10">
+            <div className="flex items-center gap-2.5 mt-10">
               {slides.map((_, i) => (
                 <span
                   key={i}
@@ -206,7 +219,7 @@ export default function ScreensFancy({ locale }: Props) {
             </div>
           </div>
 
-          {/* CENTER — iPhone with crossfading slides (CSS grid stack) */}
+          {/* CENTER — iPhone with crossfading slides */}
           <div className="order-1 lg:order-2 justify-self-center">
             <div
               ref={phoneRef}
@@ -248,11 +261,11 @@ export default function ScreensFancy({ locale }: Props) {
             </div>
           </div>
 
-          {/* RIGHT — captions stacked with CSS Grid (all slides share one cell) */}
+          {/* RIGHT — captions */}
           <div className="order-3 w-full max-w-[36ch] lg:justify-self-start">
             <div
               className="sc-caption-stack"
-              style={{ display: "grid", gridTemplateAreas: '"stack"', minHeight: 180 }}
+              style={{ display: "grid", gridTemplateAreas: '"stack"', minHeight: 200 }}
             >
               {slides.map((s, i) => (
                 <div

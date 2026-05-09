@@ -13,8 +13,8 @@ interface Props {
 
 const SCREENS = [
   asset("/screens/us/map-us.png"),
-  asset("/screens/us/map-user-details-us.png"),
-  asset("/screens/us/user-profil-us.png"),
+  asset("/screens/us/capture-us.png"),
+  asset("/screens/us/profil-us.png"),
 ];
 
 export default function LoopFancy({ locale }: Props) {
