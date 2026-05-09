@@ -105,7 +105,7 @@ Pas encore de ratings → utiliser :
 
 Pattern recommandé :
 - **Anchor haut** : Annual $49.99 (cross-out optionnel "$59.99 normal")
-- **Most popular** : Annual avec 14-day trial
+- **Most popular** : Annual
 - **Scarcity** : Founding Rider $29.99/an, capped 1000, lifetime price-lock
 - **Decoy** : Weekly $2.99 montre le coût "cher" si non-engagement
 - Tableau comparatif clair (userpilot, group.app)
@@ -415,7 +415,7 @@ Sources : [motion.dev react scroll](https://motion.dev/docs/react-scroll-animati
 
 11. PRICING — 3 cards
     - Weekly $2.99 (decoy)
-    - Annual $49.99 + 14-day trial (most popular badge)
+    - Annual $49.99 (most popular badge)
     - Founding Rider $29.99/yr — lifetime price-lock — 1000 spots — counter live
     CTA "Claim my Founding spot"
 

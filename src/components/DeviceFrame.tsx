@@ -4,21 +4,22 @@ import { asset } from "../lib/asset";
 /**
  * iPhone 15 Pro device frame wrapper.
  *
- * Geometry measured from the alpha mask of the frame PNG (1419×2796).
- * The transparent screen window:
- *   - top  inset: 130 / 2796 = 4.65 %
- *   - bot  inset: 136 / 2796 = 4.86 %
- *   - left inset: 120 / 1419 = 8.46 %
- *   - right inset: 119 / 1419 = 8.39 %
- *   - corner radius (rendered round on a 1180×2530 screen):
- *       55 / 1180 ≈ 4.66 %  /  55 / 2530 ≈ 2.17 %
+ * Geometry measured from the actual alpha-zero rect of each PNG (2026-05-09):
  *
- * Screen aspect (1180 / 2530 = 0.4664) is slightly wider than the iPhone
- * display recording aspect (1179 / 2556 = 0.4612), so we set the screen
- * window to its native ratio inside the frame and use `object-cover` for
- * the content. The frame's drawn notch sits on top of the screen content
- * and naturally covers the dynamic island when the inner content is a
- * native screen recording.
+ *   default (with drawn notch — 1419×2796):
+ *     screen window 1179×2410 at top=265 bot=120 left=120 right=120
+ *     → top 9.478% / bot 4.292% / left 8.457% / right 8.457%
+ *     → ratio 0.4890 (window excludes the notch zone — drawn opaque)
+ *
+ *   no-notch (1419×2796):
+ *     screen window 1179×2556 at top=120 bot=120 left=120 right=120
+ *     → top/bot 4.292% / left/right 8.457%
+ *     → ratio 0.4613 (matches a native iPhone recording aspect 1179/2556)
+ *
+ * Use `object-cover` on the inner media so it fills the transparent
+ * screen window. For native screen recordings (1179×2556), use the
+ * `no-notch` variant — the image's own status bar + dynamic island
+ * align naturally with the frame.
  */
 
 interface Props {
@@ -45,11 +46,13 @@ interface Props {
 }
 
 // Geometry shared by both frames (1419×2796 PNGs, transparent screen window).
-const INSET_TOP = "4.65%";
-const INSET_BOTTOM_DEFAULT = "4.86%";
-const INSET_BOTTOM_NONOTCH = "5.22%";
-const INSET_LEFT = "8.46%";
-const INSET_RIGHT = "8.39%";
+// Default frame top inset is larger because the drawn notch is opaque and
+// sits above the transparent screen rect.
+const INSET_TOP_DEFAULT = "9.478%";
+const INSET_TOP_NONOTCH = "4.292%";
+const INSET_BOTTOM = "4.292%";
+const INSET_LEFT = "8.457%";
+const INSET_RIGHT = "8.457%";
 const SCREEN_RADIUS = "4.66% / 2.17%";
 
 const FRAME_SRC: Record<NonNullable<Props["variant"]>, string> = {
@@ -71,7 +74,7 @@ export default function DeviceFrame({
   videoActive = true,
   variant = "default",
 }: Props) {
-  const insetBottom = variant === "no-notch" ? INSET_BOTTOM_NONOTCH : INSET_BOTTOM_DEFAULT;
+  const insetTop = variant === "no-notch" ? INSET_TOP_NONOTCH : INSET_TOP_DEFAULT;
   return (
     <div
       className={`device-frame relative ${className}`}
@@ -84,8 +87,8 @@ export default function DeviceFrame({
       <div
         className="absolute overflow-hidden"
         style={{
-          top: INSET_TOP,
-          bottom: insetBottom,
+          top: insetTop,
+          bottom: INSET_BOTTOM,
           left: INSET_LEFT,
           right: INSET_RIGHT,
           borderRadius: SCREEN_RADIUS,

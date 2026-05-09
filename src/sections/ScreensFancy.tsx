@@ -150,22 +150,9 @@ export default function ScreensFancy({ locale }: Props) {
     { scope: root, dependencies: [slides.length] }
   );
 
-  // Continuous gentle float on the phone
+  // Phone is intentionally still — no float / no scale animation, so the
+  // device reads as a single object the user is staring at.
   const phoneRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || !phoneRef.current) return;
-    const tween = gsap.to(phoneRef.current, {
-      y: -8,
-      duration: 4.2,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true,
-    });
-    return () => {
-      tween.kill();
-    };
-  }, []);
 
   return (
     <section ref={root} className="relative hairline-top">
