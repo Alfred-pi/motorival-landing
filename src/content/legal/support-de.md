@@ -8,7 +8,7 @@
 
 Am schnellsten erreichst du uns per E-Mail.
 
-**support@motorival.app**
+**support@motorival.ch**
 
 Wir antworten innerhalb von 48–72 Stunden, Montag bis Freitag (Europa/Zürich).
 
@@ -105,7 +105,7 @@ Bis zu 8 Mitglieder.
 ### Bugs & Ideen
 
 **Ich habe einen Bug gefunden. Wo melde ich ihn?**
-Schreib an **support@motorival.app** mit dem Betreff-Präfix **[BUG]**. Bitte einschließen:
+Schreib an **support@motorival.ch** mit dem Betreff-Präfix **[BUG]**. Bitte einschließen:
 - Schritte zum Reproduzieren
 - Was du erwartet hast
 - Was tatsächlich passiert ist
@@ -122,7 +122,7 @@ Gleiche E-Mail, Betreff-Präfix **[IDEE]**. Wir lesen jede Nachricht, auch wenn 
 Siehe unsere [Datenschutzerklärung](https://motorival.app/privacy). Kurzfassung: eine Device-ID, GPS während der Rides, dein öffentliches Profil und Ride-Statistiken. Kein Klarname, keine E-Mail, keine Telefonnummer, keine Momentangeschwindigkeit, kein GPS außerhalb von Rides.
 
 **Kann ich meine Daten exportieren?**
-Ja. Schreib an **support@motorival.app** mit Betreff **[DSGVO EXPORT]**, wir senden dir einen JSON-Dump innerhalb von 30 Tagen.
+Ja. Schreib an **support@motorival.ch** mit Betreff **[DSGVO EXPORT]**, wir senden dir einen JSON-Dump innerhalb von 30 Tagen.
 
 ---
 

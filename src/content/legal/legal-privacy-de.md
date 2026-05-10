@@ -70,7 +70,7 @@ Wir verkaufen deine Daten nie an Dritte. Wir betreiben kein gezieltes Advertisin
 - **Auskunft**: du kannst deine Daten in der App einsehen (Profil, Aktivität, Einstellungen).
 - **Berichtigung**: bearbeite dein Profil in den Einstellungen.
 - **Löschung**: Einstellungen → Mein Konto löschen.
-- **Datenübertragbarkeit**: schreib an support@motorival.app, wir schicken dir einen JSON-Export innerhalb von 30 Tagen.
+- **Datenübertragbarkeit**: schreib an support@motorival.ch, wir schicken dir einen JSON-Export innerhalb von 30 Tagen.
 - **Widerspruch gegen Analytics**: deaktiviere Analytics in den iOS-Einstellungen (Ad-Tracking beschränken).
 - **Beschwerde**: du kannst eine Beschwerde bei der Datenschutzbehörde deines Landes einreichen (in der Schweiz: EDÖB).
 
@@ -109,7 +109,7 @@ Diese Erklärung kann sich ändern. Die aktuell gültige Version ist immer die i
 
 ## 11. Kontakt
 
-**Privacy-Fragen**: support@motorival.app
+**Privacy-Fragen**: support@motorival.ch
 
 **Verantwortlicher**: AppSprint (Genf, Schweiz)
 

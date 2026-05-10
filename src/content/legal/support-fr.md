@@ -8,7 +8,7 @@
 
 Le moyen le plus rapide de nous joindre, c'est l'email.
 
-**support@motorival.app**
+**support@motorival.ch**
 
 On répond sous 48 à 72 heures, du lundi au vendredi (Europe/Zurich).
 
@@ -105,7 +105,7 @@ Ouvre l'app → **Réglages** → **Crew** → **Quitter le crew**. Ta contribut
 ### Bugs et idées
 
 **J'ai trouvé un bug. Où le signaler ?**
-Écris à **support@motorival.app** avec le préfixe **[BUG]** dans le sujet. Merci d'inclure :
+Écris à **support@motorival.ch** avec le préfixe **[BUG]** dans le sujet. Merci d'inclure :
 - Étapes pour reproduire
 - Ce que tu attendais
 - Ce qui s'est passé
@@ -122,7 +122,7 @@ Même email, préfixe **[IDÉE]** dans le sujet. On lit tous les messages même 
 Voir notre [Politique de confidentialité](https://motorival.app/privacy). Version courte : un Device ID, ton GPS pendant les rides, ton profil public, tes stats de ride. Pas de nom légal, pas d'email, pas de téléphone, pas de vitesse instantanée, pas de GPS hors ride.
 
 **Je peux exporter mes données ?**
-Oui. Écris à **support@motorival.app** avec le sujet **[EXPORT RGPD]**, on t'envoie un dump JSON sous 30 jours.
+Oui. Écris à **support@motorival.ch** avec le sujet **[EXPORT RGPD]**, on t'envoie un dump JSON sous 30 jours.
 
 ---
 

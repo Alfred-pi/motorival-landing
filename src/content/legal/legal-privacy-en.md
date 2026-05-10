@@ -70,7 +70,7 @@ We never sell your data to third parties. We don't run targeted advertising.
 - **Access**: you can review your data inside the app (profile, activity, settings).
 - **Rectification**: edit your profile in Settings.
 - **Erasure**: Settings → Delete my account.
-- **Portability**: write to support@motorival.app, we'll send you a JSON export within 30 days.
+- **Portability**: write to support@motorival.ch, we'll send you a JSON export within 30 days.
 - **Object to analytics**: disable analytics in iOS settings (Limit Ad Tracking).
 - **Complaint**: you can lodge a complaint with your country's data protection authority (in Switzerland: FDPIC).
 
@@ -109,7 +109,7 @@ This policy may evolve. The version in force is always the one shown inside the 
 
 ## 11. Contact
 
-**Privacy questions**: support@motorival.app
+**Privacy questions**: support@motorival.ch
 
 **Data controller**: AppSprint (Geneva, Switzerland)
 

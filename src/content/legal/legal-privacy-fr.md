@@ -70,7 +70,7 @@ On ne vend jamais tes données à des tiers. On ne fait pas de publicité ciblé
 - **Accès** : tu peux consulter tes données via l'app (profil, activité, settings).
 - **Rectification** : édite ton profil dans Settings.
 - **Effacement** : Settings → Supprimer mon compte.
-- **Portabilité** : écris à support@motorival.app, on te renvoie un export JSON sous 30 jours.
+- **Portabilité** : écris à support@motorival.ch, on te renvoie un export JSON sous 30 jours.
 - **Opposition aux analytics** : désactive les analytics dans les réglages iOS (Limiter le suivi publicitaire).
 - **Plainte** : tu peux déposer une plainte auprès de l'autorité de protection des données de ton pays (en Suisse : PFPDT).
 
@@ -109,7 +109,7 @@ Cette politique peut évoluer. La version en vigueur est toujours celle affiché
 
 ## 11. Contact
 
-**Questions privacy** : support@motorival.app
+**Questions privacy** : support@motorival.ch
 
 **Responsable du traitement** : AppSprint (Genève, Suisse)
 

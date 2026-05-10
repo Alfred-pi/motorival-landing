@@ -70,7 +70,7 @@ A gente nunca vende seus dados a terceiros. Não faz publicidade direcionada.
 - **Acesso**: você pode consultar seus dados dentro do app (perfil, atividade, ajustes).
 - **Retificação**: edite seu perfil em Ajustes.
 - **Exclusão**: Ajustes → Excluir minha conta.
-- **Portabilidade**: escreva para support@motorival.app, a gente te manda um export JSON em até 30 dias.
+- **Portabilidade**: escreva para support@motorival.ch, a gente te manda um export JSON em até 30 dias.
 - **Oposição às analytics**: desative as analytics nos ajustes do iOS (Limitar rastreamento de anúncios).
 - **Reclamação**: você pode apresentar uma reclamação à autoridade de proteção de dados do seu país (na Suíça: FDPIC; no Brasil: ANPD).
 
@@ -109,7 +109,7 @@ Esta política pode evoluir. A versão em vigor é sempre a exibida dentro do ap
 
 ## 11. Contato
 
-**Dúvidas de privacidade**: support@motorival.app
+**Dúvidas de privacidade**: support@motorival.ch
 
 **Controlador dos dados**: AppSprint (Genebra, Suíça)
 

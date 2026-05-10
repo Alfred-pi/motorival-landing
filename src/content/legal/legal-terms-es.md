@@ -17,7 +17,7 @@ Estas condiciones pueden cambiar. Te avisaremos dentro de la app cuando haya una
 
 MotoRival es un juego de captura de territorio para motoristas, desarrollado por AppSprint (estudio independiente). La app no está afiliada a ningún fabricante de motos, marca de equipamiento ni federación deportiva.
 
-Contacto: support@motorival.app
+Contacto: support@motorival.ch
 
 ---
 
@@ -41,7 +41,7 @@ Contacto: support@motorival.app
 - Usar la app mientras ruedas (mirar la pantalla, tocar, interactuar)
 - Falsificar tu posición GPS (GPS spoofing — detección automática, ban permanente)
 - Acosar, amenazar o hacer doxing a otro rider a través del alias o el crew
-- Hacer reverse engineering de la app, interceptar peticiones API o explotar bugs para ganar ventaja (bug bounty legítimo: escribe a support@motorival.app)
+- Hacer reverse engineering de la app, interceptar peticiones API o explotar bugs para ganar ventaja (bug bounty legítimo: escribe a support@motorival.ch)
 - Usar la app para una actividad ilegal (carreras salvajes en vía pública, huida de la policía, etc.)
 
 Nos reservamos el derecho de suspender o eliminar cualquier cuenta que infrinja estas reglas, sin aviso previo y sin reembolso.
@@ -102,7 +102,7 @@ Si eres consumidor residente en la UE, puedes beneficiarte de las disposiciones 
 
 ## 10. Contacto
 
-Para cualquier duda, escribe a **support@motorival.app**.
+Para cualquier duda, escribe a **support@motorival.ch**.
 
 ---
 
