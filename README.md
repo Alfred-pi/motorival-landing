@@ -2,6 +2,16 @@
 
 Static, SEO-tuned, multilingual landing page for MotoRival. Built with **Astro 5 + Tailwind 4**, deployed to **GitHub Pages** on its own dedicated repo / domain — kept separate from the `app/` (Despia/Firebase) so the canonical brand domain is index-friendly without leaking the in-app PWA assets.
 
+## Links
+
+- **Landing**: https://motorival.ch
+- **App (PROD)**: https://motorival.app
+- **App Store**: https://apps.apple.com/app/motorival/id6762416437
+  - FR storefront: https://apps.apple.com/fr/app/motorival/id6762416437
+  - US storefront: https://apps.apple.com/us/app/motorival/id6762416437
+
+CTAs on this site use locale-aware storefront paths (`/fr/`, `/us/`, `/es/`, `/de/`, `/it/`, `/pt/`) — see `src/lib/appStore.ts`. The path-based locale is required because link-preview scrapers (WhatsApp, Telegram) ignore the `?l=` query param.
+
 ## Stack
 
 - Astro 5 (static output)
