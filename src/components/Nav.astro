@@ -3,6 +3,7 @@ import Logo from "./Logo.astro";
 import LangSwitcher from "./LangSwitcher.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import { t, type Locale, localePath } from "../i18n/utils";
+import { appStoreUrl } from "../lib/appStore";
 
 interface Props {
   locale: Locale;
@@ -10,6 +11,7 @@ interface Props {
 }
 const { locale, pagePath = "/" } = Astro.props;
 const dict = t(locale);
+const downloadHref = appStoreUrl(locale);
 ---
 
 <header
@@ -29,13 +31,14 @@ const dict = t(locale);
     <div class="flex items-center gap-2 md:gap-3">
       <LangSwitcher current={locale} pagePath={pagePath} />
       <ThemeToggle locale={locale} />
-      <button
-        type="button"
-        data-appstore-trigger
+      <a
+        href={downloadHref}
+        target="_blank"
+        rel="noopener"
         class="hidden sm:inline-flex bg-[var(--color-accent)] text-white px-4 py-2 text-sm font-semibold rounded-lg hover:-translate-y-0.5 transition-transform hover:shadow-[0_8px_24px_-8px_rgba(255,23,68,0.6)] cursor-pointer"
       >
         {dict.nav.download}
-      </button>
+      </a>
     </div>
   </div>
 </header>

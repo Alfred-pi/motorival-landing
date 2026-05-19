@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { t, type Locale } from "../i18n/utils";
+import { appStoreUrl } from "../lib/appStore";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -46,8 +47,9 @@ export default function FinalCTA({ locale }: Props) {
 
         <div className="cta-fade inline-flex flex-col items-center gap-4">
           <a
-            href="#"
-            data-appstore-trigger
+            href={appStoreUrl(locale)}
+            target="_blank"
+            rel="noopener"
             className="inline-flex transition-transform duration-300 hover:-translate-y-0.5"
             aria-label={dict.badge.aria}
             style={{ height: 54 }}
@@ -58,9 +60,6 @@ export default function FinalCTA({ locale }: Props) {
               style={{ height: 54, width: "auto", borderRadius: 10 }}
             />
           </a>
-          <p className="eyebrow text-[var(--color-muted)] mt-1">
-            {dict.finalCta.soon}
-          </p>
         </div>
       </div>
     </section>

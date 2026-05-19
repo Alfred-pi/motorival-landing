@@ -1,5 +1,6 @@
 ---
 import { t, type Locale } from "../i18n/utils";
+import { appStoreUrl } from "../lib/appStore";
 interface Props {
   locale: Locale;
   className?: string;
@@ -8,11 +9,13 @@ interface Props {
 }
 const { locale, className = "", height = 48 } = Astro.props;
 const dict = t(locale);
+const href = appStoreUrl(locale);
 ---
 
 <a
-  href="#"
-  data-appstore-trigger
+  href={href}
+  target="_blank"
+  rel="noopener"
   class={`appstore-badge inline-flex transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
   aria-label={dict.badge.aria}
   style={`height: ${height}px;`}

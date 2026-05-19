@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { t, type Locale } from "../i18n/utils";
+import { appStoreUrl } from "../lib/appStore";
 import HeroVideoPlayer from "../components/HeroVideoPlayer";
 
 interface Props {
@@ -123,8 +124,9 @@ export default function HeroFancy({ locale }: Props) {
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5 mt-8 md:mt-10">
             <a
-              href="#"
-              data-appstore-trigger
+              href={appStoreUrl(locale)}
+              target="_blank"
+              rel="noopener"
               className="inline-flex transition-transform duration-300 hover:-translate-y-0.5"
               aria-label={dict.badge.aria}
               style={{ height: 54 }}
