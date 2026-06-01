@@ -35,9 +35,10 @@ const downloadHref = appStoreUrl(locale);
         href={downloadHref}
         target="_blank"
         rel="noopener"
-        class="hidden sm:inline-flex bg-[var(--color-accent)] text-[#050507] px-4 py-2 text-sm font-bold rounded-lg hover:-translate-y-0.5 transition-transform hover:shadow-[0_8px_24px_-8px_rgba(255,23,68,0.6)] cursor-pointer"
+        class="hidden sm:inline-flex h-9 items-center gap-2 rounded-lg border border-[color-mix(in_oklab,var(--color-accent)_32%,var(--color-line))] bg-[color-mix(in_oklab,var(--color-bg)_82%,transparent)] px-3 font-heading text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--color-text)] transition-[background-color,border-color,color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent)] hover:bg-[color-mix(in_oklab,var(--color-accent)_8%,var(--color-bg))] hover:text-[var(--color-accent)] hover:shadow-[0_14px_30px_-20px_color-mix(in_oklab,var(--color-accent)_70%,transparent)] cursor-pointer"
       >
-        {dict.nav.download}
+        <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_14px_color-mix(in_oklab,var(--color-accent)_80%,transparent)]"></span>
+        <span>{dict.nav.download}</span>
       </a>
     </div>
   </div>

@@ -15,7 +15,7 @@ const locale = "pt" as const;
   <HeroFancy locale={locale} />
   <SeoIntro locale={locale} />
   <QuoteSection locale={locale} />
-  <ScreensFancy locale={locale} />
+  <ScreensFancy locale={locale} client:only="react" />
   <Features locale={locale} />
   <FAQFancy locale={locale} />
   <FinalCTA locale={locale} />
