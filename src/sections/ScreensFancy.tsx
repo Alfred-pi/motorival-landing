@@ -9,11 +9,13 @@ interface SlideCopy { number: string; title: string; desc: string; }
 // terrain → mid-ride interaction → loot history → identity → collective → global ranking.
 const SLIDE_KEYS = ["map", "capture", "ride", "profil", "crew", "leaderbord"] as const;
 
-const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides: SlideCopy[] }> = {
+const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; view: string; open: string; slides: SlideCopy[] }> = {
   fr: {
     eyebrow: "L'APP",
     title: "Tu rides. L'app empile.",
     sub: "Pendant le ride : aucun tap. Après : chaque chiffre se lit en deux secondes.",
+    view: "Agrandir",
+    open: "ouvrir le screenshot en grand",
     slides: [
       { number: "01", title: "Démarre à 0. Eux, non.", desc: "Rouge, vert, bleu : ces hexagones sont déjà signés. Ton premier kilomètre va effacer un nom." },
       { number: "02", title: "Sa bécane est une CBR.", desc: "Tape un hex en plein ride. Vois la moto qui l'a peint. Décide en deux secondes si tu lui reprends." },
@@ -27,6 +29,8 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     eyebrow: "THE APP",
     title: "You ride. The app stacks.",
     sub: "Mid-ride: zero taps. Off the bike: every number readable in two seconds.",
+    view: "Expand",
+    open: "open the screenshot full size",
     slides: [
       { number: "01", title: "Start at 0. They didn't.", desc: "Red, green, blue — those hexes are already signed. Your first kilometer erases a name." },
       { number: "02", title: "His bike is a CBR.", desc: "Tap any hex mid-ride. See the bike that painted it. Decide in two seconds if you take it back." },
@@ -40,6 +44,8 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     eyebrow: "LA APP",
     title: "Tú ruedas. La app suma.",
     sub: "En pleno ride: cero toques. Fuera de la moto: cada cifra legible en dos segundos.",
+    view: "Ampliar",
+    open: "abrir la captura en grande",
     slides: [
       { number: "01", title: "Arranca en 0. Ellos no.", desc: "Rojo, verde, azul: esos hexágonos ya están firmados. Tu primer kilómetro borra un nombre." },
       { number: "02", title: "Su moto es una CBR.", desc: "Toca un hex en pleno ride. Mira la moto que lo pintó. Decide en dos segundos si se lo arrebatas." },
@@ -53,6 +59,8 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     eyebrow: "DIE APP",
     title: "Du fährst. Die App stapelt.",
     sub: "Während der Fahrt: null Taps. Danach: jede Zahl in zwei Sekunden lesbar.",
+    view: "Vergrößern",
+    open: "Screenshot groß öffnen",
     slides: [
       { number: "01", title: "Du startest bei 0. Sie nicht.", desc: "Rot, grün, blau — diese Hexagons sind schon signiert. Dein erster Kilometer löscht einen Namen." },
       { number: "02", title: "Seine Maschine ist eine CBR.", desc: "Tippe einen Hex mitten im Ride. Sieh die Maschine, die ihn bemalt hat. Entscheide in zwei Sekunden, ob du sie zurückholst." },
@@ -66,6 +74,8 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     eyebrow: "L'APP",
     title: "Tu vai. L'app accumula.",
     sub: "In pieno ride: zero tap. Dopo: ogni cifra leggibile in due secondi.",
+    view: "Ingrandisci",
+    open: "aprire lo screenshot grande",
     slides: [
       { number: "01", title: "Parti da 0. Loro no.", desc: "Rosso, verde, blu: quegli esagoni sono già firmati. Il tuo primo chilometro cancella un nome." },
       { number: "02", title: "La sua moto è una CBR.", desc: "Tocca un esagono in pieno ride. Vedi la moto che l'ha dipinto. Decidi in due secondi se gliela togli." },
@@ -79,6 +89,8 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
     eyebrow: "O APP",
     title: "Você anda. O app empilha.",
     sub: "Em pleno ride: zero toques. Depois: cada número legível em dois segundos.",
+    view: "Ampliar",
+    open: "abrir o screenshot em tamanho grande",
     slides: [
       { number: "01", title: "Começa em 0. Eles não.", desc: "Vermelho, verde, azul — esses hexágonos já estão assinados. Seu primeiro quilômetro apaga um nome." },
       { number: "02", title: "A moto dele é uma CBR.", desc: "Toque num hex em pleno ride. Veja a moto que pintou. Decide em dois segundos se você toma de volta." },
@@ -101,7 +113,7 @@ export default function ScreensFancy({ locale }: Props) {
   }));
 
   return (
-    <section className="relative hairline-top overflow-hidden py-24 md:py-32">
+    <section className="relative hairline-top overflow-hidden py-24 md:py-32" data-screen-gallery>
       <div aria-hidden className="absolute inset-0 -z-10 hex-bg pointer-events-none">
         <svg className="absolute right-0 top-0 h-full w-[55%]" viewBox="-50 -50 700 600" preserveAspectRatio="xMaxYMid slice">
           {Array.from({ length: 60 }).map((_, i) => {
@@ -135,18 +147,34 @@ export default function ScreensFancy({ locale }: Props) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-[var(--color-line)] hairline-top hairline-bot">
           {slides.map((s, i) => (
-            <article key={s.src} className="bg-[var(--color-bg)] p-5 md:p-7 grid grid-cols-[92px_1fr] sm:grid-cols-[128px_1fr] gap-5 items-start">
-              <img
-                src={s.src}
-                alt={s.title}
-                className="block w-full h-auto select-none"
-                width={760}
-                height={1498}
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-              />
-              <div>
+            <button
+              key={s.src}
+              type="button"
+              className="screen-card group bg-[var(--color-bg)] p-5 md:p-7 grid grid-cols-[104px_1fr] sm:grid-cols-[148px_1fr] gap-5 items-start text-left transition-[background-color,transform,box-shadow] duration-300 hover:bg-[var(--color-bg-2)] hover:-translate-y-1 focus-visible:z-10"
+              data-screen-open
+              data-screen-src={s.src}
+              data-screen-title={s.title}
+              data-screen-desc={s.desc}
+              data-screen-index={`${s.number} / ${String(slides.length).padStart(2, "0")}`}
+              aria-label={`${s.title} — ${copy.open}`}
+            >
+              <span className="relative block overflow-hidden rounded-[22px] bg-black shadow-[0_18px_42px_-28px_rgba(0,0,0,0.65)] transition-transform duration-300 group-hover:scale-[1.045]">
+                <img
+                  src={s.src}
+                  alt=""
+                  className="block w-full h-auto select-none transition-transform duration-500 group-hover:scale-[1.04]"
+                  width={760}
+                  height={1498}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[linear-gradient(180deg,transparent_40%,rgba(0,0,0,0.50)_100%)]" />
+                <span className="absolute bottom-2 left-2 right-2 rounded-lg bg-white/90 px-2 py-1 text-center text-[10px] font-black uppercase tracking-[0.12em] text-black opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                  {copy.view}
+                </span>
+              </span>
+              <span className="block">
                 <span
                   className="font-heading text-[var(--color-accent)] block mb-3"
                   style={{ fontSize: "13px", letterSpacing: "0.18em", fontWeight: 600 }}
@@ -162,11 +190,90 @@ export default function ScreensFancy({ locale }: Props) {
                 <p className="text-[var(--color-muted)] text-base leading-relaxed">
                   {s.desc}
                 </p>
-              </div>
-            </article>
+              </span>
+            </button>
           ))}
         </div>
       </div>
+
+      <dialog
+        className="screen-dialog m-0 max-w-none bg-transparent p-0 text-[var(--color-text)] backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+        aria-label="Screenshot MotoRival"
+        data-screen-dialog
+      >
+        <div className="fixed inset-0 grid place-items-center p-4 md:p-8" data-screen-backdrop>
+          <figure className="relative grid w-full max-w-[1100px] grid-cols-1 items-center gap-5 rounded-[8px] border border-white/10 bg-[color-mix(in_oklab,var(--color-bg)_92%,transparent)] p-4 shadow-[0_28px_120px_-36px_rgba(0,0,0,0.75)] md:grid-cols-[minmax(260px,380px)_1fr] md:p-6">
+            <button
+              type="button"
+              className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-bg-3)] text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
+              aria-label="Fermer"
+              data-screen-close
+            >
+              <span aria-hidden style={{ fontSize: "24px", lineHeight: 1 }}>×</span>
+            </button>
+            <div className="mx-auto w-[min(72vw,360px)] md:w-full">
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                alt=""
+                className="block h-auto w-full rounded-[30px] shadow-[0_30px_90px_-42px_rgba(0,0,0,0.9)]"
+                width={760}
+                height={1498}
+                loading="lazy"
+                decoding="async"
+                data-screen-dialog-img
+              />
+            </div>
+            <figcaption className="pr-10 md:pr-14">
+              <span
+                className="font-heading text-[var(--color-accent)] block mb-4"
+                style={{ fontSize: "13px", letterSpacing: "0.18em", fontWeight: 600 }}
+                data-screen-dialog-index
+              >
+                {slides[0].number} / {String(slides.length).padStart(2, "0")}
+              </span>
+              <h3
+                className="font-display text-[var(--color-text)] mb-5"
+                style={{ fontSize: "clamp(30px, 4vw, 64px)", letterSpacing: "-0.04em", fontWeight: 800 }}
+                data-screen-dialog-title
+              >
+                {slides[0].title}
+              </h3>
+              <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-[46ch]" data-screen-dialog-desc>
+                {slides[0].desc}
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </dialog>
+
+      <script dangerouslySetInnerHTML={{ __html: `
+        (() => {
+          const gallery = document.currentScript?.closest("[data-screen-gallery]");
+          if (!gallery) return;
+          const dialog = gallery.querySelector("[data-screen-dialog]");
+          const image = gallery.querySelector("[data-screen-dialog-img]");
+          const title = gallery.querySelector("[data-screen-dialog-title]");
+          const desc = gallery.querySelector("[data-screen-dialog-desc]");
+          const index = gallery.querySelector("[data-screen-dialog-index]");
+          const close = gallery.querySelector("[data-screen-close]");
+          if (!dialog || !image || !title || !desc || !index || !close) return;
+
+          gallery.querySelectorAll("[data-screen-open]").forEach((card) => {
+            card.addEventListener("click", () => {
+              image.src = card.dataset.screenSrc || "";
+              title.textContent = card.dataset.screenTitle || "";
+              desc.textContent = card.dataset.screenDesc || "";
+              index.textContent = card.dataset.screenIndex || "";
+              if (typeof dialog.showModal === "function") dialog.showModal();
+            });
+          });
+
+          close.addEventListener("click", () => dialog.close());
+          dialog.addEventListener("click", (event) => {
+            if (event.target?.hasAttribute?.("data-screen-backdrop")) dialog.close();
+          });
+        })();
+      ` }} />
     </section>
   );
 }
