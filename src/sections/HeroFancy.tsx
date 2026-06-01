@@ -1,9 +1,6 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { t, type Locale } from "../i18n/utils";
-import { appStoreUrl } from "../lib/appStore";
 import HeroVideoPlayer from "../components/HeroVideoPlayer";
+import StoreBadges from "../components/StoreBadges";
 
 interface Props {
   locale: Locale;
@@ -36,43 +33,10 @@ function buildHexes(cols: number, rows: number, size: number) {
 
 export default function HeroFancy({ locale }: Props) {
   const dict = t(locale);
-  const root = useRef<HTMLElement>(null);
   const cells = buildHexes(10, 8, 36);
-
-  useGSAP(
-    () => {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduced) return;
-
-      // Continuous random hex pulse — signature ambient.
-      // 4 colour variants (red kept as the primary, joined by cyan, magenta
-      // and gold-yellow — the same hues that appear on rider trails in the
-      // app). 14 concurrent pulses for a denser, more alive grid.
-      const allCells = gsap.utils.toArray<SVGPathElement>(".hex-cell");
-      const VARIANTS = ["c1", "c2", "c3", "c4"] as const;
-      const pulse = () => {
-        const target = gsap.utils.random(allCells);
-        if (!target) return;
-        const variant = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
-        target.classList.add("is-on", `is-on--${variant}`);
-        gsap.delayedCall(gsap.utils.random(0.5, 1.6), () => {
-          target.classList.remove("is-on", `is-on--${variant}`);
-          pulse();
-        });
-      };
-      for (let i = 0; i < 14; i++) {
-        gsap.delayedCall(i * 0.18, pulse);
-      }
-
-      // Phone is intentionally still — no float / hover. Only the screen
-      // content swaps inside a fixed device frame.
-    },
-    { scope: root }
-  );
 
   return (
     <section
-      ref={root}
       className="hero relative w-full overflow-hidden"
       style={{ minHeight: "calc(100svh - 28px - clamp(34px, 4.2vw, 44px))" }}
     >
@@ -84,8 +48,22 @@ export default function HeroFancy({ locale }: Props) {
           viewBox="-50 -50 700 600"
           preserveAspectRatio="xMaxYMid slice"
         >
-          {cells.map((c) => (
-            <path key={c.key} d={c.d} className="hex-cell" />
+          {cells.map((c, i) => (
+            <path
+              key={c.key}
+              d={c.d}
+              className={`hex-cell ${
+                i % 17 === 0
+                  ? "is-on is-on--c1"
+                  : i % 19 === 0
+                    ? "is-on is-on--c2"
+                    : i % 23 === 0
+                      ? "is-on is-on--c3"
+                      : i % 29 === 0
+                        ? "is-on is-on--c4"
+                        : ""
+              }`}
+            />
           ))}
         </svg>
       </div>
@@ -122,21 +100,8 @@ export default function HeroFancy({ locale }: Props) {
             {dict.hero.sub}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5 mt-8 md:mt-10">
-            <a
-              href={appStoreUrl(locale)}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex transition-transform duration-300 hover:-translate-y-0.5"
-              aria-label={dict.badge.aria}
-              style={{ height: 54 }}
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}badges/app-store-en.svg`}
-                alt={dict.badge.aria}
-                style={{ height: 54, width: "auto", borderRadius: 10 }}
-              />
-            </a>
+          <div className="mt-8 md:mt-10">
+            <StoreBadges locale={locale} align="start" />
           </div>
         </div>
 

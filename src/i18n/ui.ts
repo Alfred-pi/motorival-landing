@@ -92,6 +92,10 @@ type Dict = {
     appStore: string;
     soon: string;
     aria: string;
+    androidKicker: string;
+    googlePlay: string;
+    androidSoon: string;
+    androidAria: string;
   };
 };
 
@@ -99,9 +103,9 @@ const fr: Dict = {
   meta: {
     title: 'MotoRival — Conquiers ta ville à moto',
     description:
-      "Le seul jeu PvP territorial pensé pour les motards. Roule, capture des zones hexagonales, défends-les. Conçu à Genève. Bientôt sur iOS.",
+      "Le seul jeu PvP territorial pensé pour les motards. Roule, capture des zones hexagonales, défends-les. Disponible sur iOS. Android en préparation.",
     ogTitle: 'MotoRival',
-    ogDescription: 'Bataille territoriale pour motards. iOS bientôt.',
+    ogDescription: 'Bataille territoriale pour motards. iOS live, Android en préparation.',
   },
   nav: {
     download: 'Télécharger',
@@ -109,7 +113,7 @@ const fr: Dict = {
     toggleTheme: 'Changer de thème',
   },
   hero: {
-    eyebrow: 'NOUVEAU · iOS · v1',
+    eyebrow: 'NOUVEAU · iOS LIVE · ANDROID EN PRÉPA',
     headline: ['ROULE.', 'CAPTURE.', 'CONQUIERS.'],
     title: ['Chaque route', 'est à prendre.', ''],
     sub: 'Roule. Capture des zones. Défends-les contre tes rivaux. Une seule app fait ça pour les motards.',
@@ -182,7 +186,7 @@ const fr: Dict = {
       },
       {
         q: 'Android prévu ?',
-        a: "iPhone d'abord. Android est sur la roadmap (v2.0) — pas encore de date. Pour l'instant, MotoRival sort uniquement sur iOS.",
+        a: "Oui. Le chantier Android via Despia est lancé. iOS est déjà live ; Android arrive après validation Google Play, test fermé et validation du GPS background.",
       },
       {
         q: 'Comment je supprime mon compte ?',
@@ -195,7 +199,7 @@ const fr: Dict = {
     title: ['Les rues sont', 'à prendre.'],
     sub: 'Premier ride. Première zone capturée. Premier vol subi. Le compteur démarre maintenant.',
     note: 'Gratuit avec 1 ride/sem · Rival Pass débloque tout',
-    soon: 'Bientôt sur iOS · Submission en cours',
+    soon: 'iOS live · Android en préparation',
   },
   footer: {
     tagline: 'Bataille territoriale pour motards. Conçu à Genève. Lancé sur iOS.',
@@ -210,8 +214,12 @@ const fr: Dict = {
   badge: {
     download: 'TÉLÉCHARGER SUR',
     appStore: 'App Store',
-    soon: "Bientôt sur l'App Store. Submission en cours.",
+    soon: "Disponible sur l'App Store. Android en préparation.",
     aria: "Télécharger sur l'App Store",
+    androidKicker: 'BIENTÔT SUR',
+    googlePlay: 'Google Play',
+    androidSoon: 'Android en préparation',
+    androidAria: 'Google Play en préparation',
   },
 };
 
@@ -219,13 +227,13 @@ const en: Dict = {
   meta: {
     title: 'MotoRival — Claim every road you ride',
     description:
-      'The only PvP territory game built for motorcyclists. Ride, capture hex zones, defend them. Made in Geneva. Coming soon on iOS.',
+      'The only PvP territory game built for motorcyclists. Ride, capture hex zones, defend them. Live on iOS. Android in preparation.',
     ogTitle: 'MotoRival',
-    ogDescription: 'Territory warfare for motorcyclists. iOS soon.',
+    ogDescription: 'Territory warfare for motorcyclists. iOS live, Android in preparation.',
   },
   nav: { download: 'Download', skipToContent: 'Skip to content', toggleTheme: 'Toggle theme' },
   hero: {
-    eyebrow: 'NEW · iOS · v1',
+    eyebrow: 'NEW · iOS LIVE · ANDROID NEXT',
     headline: ['RIDE.', 'CAPTURE.', 'CONQUER.'],
     title: ['Every road', 'is yours to claim.', ''],
     sub: 'Ride. Capture zones. Defend them from rivals. One app built for motorcyclists.',
@@ -293,7 +301,7 @@ const en: Dict = {
       },
       {
         q: 'Android version?',
-        a: 'iPhone first. Android is on the roadmap (v2.0) — no date yet. For now, MotoRival ships only on iOS.',
+        a: 'Yes. The Android build is underway through Despia. iOS is live; Android follows after Google Play verification, closed testing, and background GPS review.',
       },
       {
         q: 'How do I delete my account?',
@@ -306,7 +314,7 @@ const en: Dict = {
     title: ['The streets are', 'up for grabs.'],
     sub: 'First ride. First zone claimed. First steal taken. The clock starts now.',
     note: 'Free with 1 ride/week · Rival Pass unlocks everything',
-    soon: 'Coming soon on iOS · Submission in progress',
+    soon: 'iOS live · Android in preparation',
   },
   footer: {
     tagline: 'Territory warfare for motorcyclists. Built in Geneva. Launched on iOS.',
@@ -318,20 +326,29 @@ const en: Dict = {
     rights: '© 2026 MotoRival · AppSprint Studio · Geneva',
     motto: 'Ride safe. Ride far.',
   },
-  badge: { download: 'Download on the', appStore: 'App Store', soon: 'Coming soon on the App Store. Submission in progress.', aria: 'Download on the App Store' },
+  badge: {
+    download: 'Download on the',
+    appStore: 'App Store',
+    soon: 'Live on the App Store. Android in preparation.',
+    aria: 'Download on the App Store',
+    androidKicker: 'COMING TO',
+    googlePlay: 'Google Play',
+    androidSoon: 'Android in preparation',
+    androidAria: 'Google Play in preparation',
+  },
 };
 
 const es: Dict = {
   meta: {
     title: 'MotoRival — Reclama cada carretera que rodes',
     description:
-      'El único juego PvP territorial pensado para motoristas. Rueda, captura zonas hexagonales, defiéndelas. Hecho en Ginebra. Próximamente en iOS.',
+      'El único juego PvP territorial pensado para motoristas. Rueda, captura zonas hexagonales, defiéndelas. Ya en iOS. Android en preparación.',
     ogTitle: 'MotoRival',
-    ogDescription: 'Guerra territorial para motoristas. iOS pronto.',
+    ogDescription: 'Guerra territorial para motoristas. iOS live, Android en preparación.',
   },
   nav: { download: 'Descargar', skipToContent: 'Saltar al contenido', toggleTheme: 'Cambiar tema' },
   hero: {
-    eyebrow: 'NUEVO · iOS · v1',
+    eyebrow: 'NUEVO · iOS LIVE · ANDROID EN PREPARACIÓN',
     headline: ['RUEDA.', 'CAPTURA.', 'CONQUISTA.'],
     title: ['Cada carretera', 'es tuya.', ''],
     sub: 'Rueda. Captura zonas. Defiéndelas de tus rivales. Una sola app hecha para motoristas.',
@@ -388,7 +405,7 @@ const es: Dict = {
       { q: '¿Mide mi velocidad?', a: 'No. Nunca. Decisión de producto. Medimos distancia, tiempo, zonas — no velocidad. Por tu seguridad y la nuestra.' },
       { q: '¿Hay versión gratis?', a: 'Sí. Inicio gratis con 1 ruta semanal, captura de zonas, leaderboard ciudad, racha diaria, Modo Riding. Rival Pass desbloquea rutas ilimitadas, leaderboards globales, crews, Pin-to-Ride, Némesis, Personas, retos diarios y stats avanzadas. $2.99/sem o $49.99/año.' },
       { q: '¿Caducan mis zonas?', a: 'Si no pasas por encima en 7 días, empiezan a perder color en el mapa (decay visual). Te avisamos a las 18h el día antes — sal a defenderlas.' },
-      { q: '¿Versión Android?', a: 'iPhone primero. Android está en el roadmap (v2.0) — sin fecha aún. De momento, MotoRival sólo sale en iOS.' },
+      { q: '¿Versión Android?', a: 'Sí. El build Android vía Despia ya está en marcha. iOS está live; Android llega después de la verificación de Google Play, el test cerrado y la revisión del GPS en background.' },
       { q: '¿Cómo elimino mi cuenta?', a: 'Ajustes → Danger Zone → Eliminar mi cuenta. Todo borrado: perfil, rutas, zonas, crew. Si tienes un Rival Pass activo, cancélalo aparte en Ajustes iOS → Suscripciones (lo gestiona Apple, no nosotros).' },
     ],
   },
@@ -397,7 +414,7 @@ const es: Dict = {
     title: ['Las calles están', 'libres.'],
     sub: 'Primera ruta. Primera zona capturada. Primer robo recibido. El reloj empieza ahora.',
     note: 'Gratis con 1 ruta/sem · Rival Pass desbloquea todo',
-    soon: 'Pronto en iOS · Envío en curso',
+    soon: 'iOS live · Android en preparación',
   },
   footer: {
     tagline: 'Guerra territorial para motoristas. Hecho en Ginebra. Lanzado en iOS.',
@@ -409,20 +426,29 @@ const es: Dict = {
     rights: '© 2026 MotoRival · AppSprint Studio · Ginebra',
     motto: 'Rueda seguro. Rueda lejos.',
   },
-  badge: { download: 'Descárgalo en el', appStore: 'App Store', soon: 'Pronto en el App Store. Envío en curso.', aria: 'Descárgalo en el App Store' },
+  badge: {
+    download: 'Descárgalo en el',
+    appStore: 'App Store',
+    soon: 'Ya en el App Store. Android en preparación.',
+    aria: 'Descárgalo en el App Store',
+    androidKicker: 'PRONTO EN',
+    googlePlay: 'Google Play',
+    androidSoon: 'Android en preparación',
+    androidAria: 'Google Play en preparación',
+  },
 };
 
 const de: Dict = {
   meta: {
     title: 'MotoRival — Erobere jede Straße',
     description:
-      'Das einzige PvP-Territory-Spiel für Motorradfahrer. Fahre, erobere Hex-Zonen, verteidige sie. Made in Genf. Bald auf iOS.',
+      'Das einzige PvP-Territory-Spiel für Motorradfahrer. Fahre, erobere Hex-Zonen, verteidige sie. Live auf iOS. Android in Vorbereitung.',
     ogTitle: 'MotoRival',
-    ogDescription: 'Territory-Kampf für Motorradfahrer. iOS bald.',
+    ogDescription: 'Territory-Kampf für Motorradfahrer. iOS live, Android in Vorbereitung.',
   },
   nav: { download: 'Laden', skipToContent: 'Zum Inhalt springen', toggleTheme: 'Theme wechseln' },
   hero: {
-    eyebrow: 'NEU · iOS · v1',
+    eyebrow: 'NEU · iOS LIVE · ANDROID IN VORBEREITUNG',
     headline: ['FAHRE.', 'EROBERE.', 'DOMINIERE.'],
     title: ['Jede Straße', 'gehört dir.', ''],
     sub: 'Fahre. Erobere Zonen. Verteidige sie. Eine App, gebaut für Motorradfahrer.',
@@ -464,7 +490,7 @@ const de: Dict = {
       { q: 'Misst es meine Geschwindigkeit?', a: 'Nein. Niemals. Produkt-Entscheidung. Wir tracken Distanz, Zeit, Zonen — nicht Speed. Für deine Sicherheit und unsere.' },
       { q: 'Gibt es eine Gratis-Version?', a: 'Ja. Gratis-Start mit 1 Ride pro Woche, Zone-Capture, Stadt-Leaderboard, Daily Streak, Riding Mode. Rival Pass schaltet unbegrenzte Rides, globale Leaderboards, Crews, Pin-to-Ride, Nemesis, Personas, Daily Challenges und Advanced Stats frei. $2.99/Woche oder $49.99/Jahr.' },
       { q: 'Verfallen meine Zonen?', a: 'Wenn du 7 Tage lang nicht drüber fährst, beginnen sie auf der Karte zu verblassen (visueller Decay). Wir benachrichtigen dich um 18 Uhr am Vortag — fahre raus, um sie zu verteidigen.' },
-      { q: 'Android?', a: 'iPhone zuerst. Android steht auf der Roadmap (v2.0) — noch kein Datum. Aktuell erscheint MotoRival nur auf iOS.' },
+      { q: 'Android?', a: 'Ja. Der Android-Build über Despia läuft. iOS ist live; Android folgt nach Google-Play-Verifizierung, geschlossenem Test und Background-GPS-Review.' },
       { q: 'Wie lösche ich meinen Account?', a: 'Einstellungen → Danger Zone → Account löschen. Alles weg: Profil, Rides, Zonen, Crew. Wenn du einen aktiven Rival Pass hast, kündige ihn separat in iOS-Einstellungen → Abonnements (Apple verwaltet, nicht wir).' },
     ],
   },
@@ -473,7 +499,7 @@ const de: Dict = {
     title: ['Die Straßen sind', 'frei.'],
     sub: 'Erster Ride. Erste Zone erobert. Erster Diebstahl. Die Uhr läuft jetzt.',
     note: 'Gratis mit 1 Ride/Woche · Rival Pass schaltet alles frei',
-    soon: 'Bald auf iOS · Einreichung läuft',
+    soon: 'iOS live · Android in Vorbereitung',
   },
   footer: {
     tagline: 'Territory-Kampf für Motorradfahrer. Made in Genf. Auf iOS gestartet.',
@@ -485,20 +511,29 @@ const de: Dict = {
     rights: '© 2026 MotoRival · AppSprint Studio · Genf',
     motto: 'Fahre sicher. Fahre weit.',
   },
-  badge: { download: 'Laden im', appStore: 'App Store', soon: 'Bald im App Store. Einreichung läuft.', aria: 'Im App Store laden' },
+  badge: {
+    download: 'Laden im',
+    appStore: 'App Store',
+    soon: 'Live im App Store. Android in Vorbereitung.',
+    aria: 'Im App Store laden',
+    androidKicker: 'BALD BEI',
+    googlePlay: 'Google Play',
+    androidSoon: 'Android in Vorbereitung',
+    androidAria: 'Google Play in Vorbereitung',
+  },
 };
 
 const it: Dict = {
   meta: {
     title: 'MotoRival — Conquista ogni strada',
     description:
-      "L'unico gioco PvP territoriale pensato per motociclisti. Guida, cattura zone esagonali, difendile. Fatto a Ginevra. Presto su iOS.",
+      "L'unico gioco PvP territoriale pensato per motociclisti. Guida, cattura zone esagonali, difendile. Live su iOS. Android in preparazione.",
     ogTitle: 'MotoRival',
-    ogDescription: 'Guerra territoriale per motociclisti. iOS presto.',
+    ogDescription: 'Guerra territoriale per motociclisti. iOS live, Android in preparazione.',
   },
   nav: { download: 'Scarica', skipToContent: 'Salta al contenuto', toggleTheme: 'Cambia tema' },
   hero: {
-    eyebrow: 'NUOVO · iOS · v1',
+    eyebrow: 'NUOVO · iOS LIVE · ANDROID IN PREPARAZIONE',
     headline: ['GUIDA.', 'CATTURA.', 'DOMINA.'],
     title: ['Ogni strada', 'è tua.', ''],
     sub: 'Guida. Cattura zone. Difendile dai rivali. Una sola app per motociclisti.',
@@ -540,7 +575,7 @@ const it: Dict = {
       { q: 'Misura la velocità?', a: 'No. Mai. Scelta di prodotto. Tracciamo distanza, tempo, zone — non velocità. Per la tua sicurezza e la nostra.' },
       { q: 'Versione gratuita?', a: 'Sì. Avvio gratuito con 1 ride a settimana, cattura zone, classifica città, streak quotidiano, Modalità Riding. Rival Pass sblocca ride illimitati, classifiche globali, crew, Pin-to-Ride, Nemesis, Personas, sfide quotidiane e statistiche avanzate. $2.99/sett o $49.99/anno.' },
       { q: 'Le mie zone scadono?', a: "Se non ci passi sopra per 7 giorni, iniziano a sbiadire sulla mappa (decay visivo). Ti avvisiamo alle 18 il giorno prima — esci a difenderle." },
-      { q: 'Android?', a: 'iPhone prima. Android è sulla roadmap (v2.0) — nessuna data ancora. Per ora, MotoRival esce solo su iOS.' },
+      { q: 'Android?', a: 'Sì. Il build Android via Despia è partito. iOS è live; Android arriva dopo verifica Google Play, test chiuso e review del GPS in background.' },
       { q: 'Come elimino il mio account?', a: 'Impostazioni → Danger Zone → Elimina il mio account. Tutto cancellato: profilo, ride, zone, crew. Se hai un Rival Pass attivo, annullalo a parte in Impostazioni iOS → Abbonamenti (Apple gestisce, non noi).' },
     ],
   },
@@ -549,7 +584,7 @@ const it: Dict = {
     title: ['Le strade sono', 'libere.'],
     sub: 'Primo ride. Prima zona catturata. Primo furto subito. Il timer parte ora.',
     note: 'Gratis con 1 ride/sett · Rival Pass sblocca tutto',
-    soon: 'Presto su iOS · Submission in corso',
+    soon: 'iOS live · Android in preparazione',
   },
   footer: {
     tagline: 'Guerra territoriale per motociclisti. Fatto a Ginevra. Lanciato su iOS.',
@@ -561,20 +596,29 @@ const it: Dict = {
     rights: '© 2026 MotoRival · AppSprint Studio · Ginevra',
     motto: 'Guida sicuro. Guida lontano.',
   },
-  badge: { download: 'Scarica su', appStore: 'App Store', soon: "Presto sull'App Store. Submission in corso.", aria: "Scarica sull'App Store" },
+  badge: {
+    download: 'Scarica su',
+    appStore: 'App Store',
+    soon: "Live sull'App Store. Android in preparazione.",
+    aria: "Scarica sull'App Store",
+    androidKicker: 'PRESTO SU',
+    googlePlay: 'Google Play',
+    androidSoon: 'Android in preparazione',
+    androidAria: 'Google Play in preparazione',
+  },
 };
 
 const pt: Dict = {
   meta: {
     title: 'MotoRival — Conquiste cada estrada',
     description:
-      'O único jogo PvP territorial feito para motociclistas. Pilote, capture zonas hexagonais, defenda-as. Feito em Genebra. Em breve no iOS.',
+      'O único jogo PvP territorial feito para motociclistas. Pilote, capture zonas hexagonais, defenda-as. Já no iOS. Android em preparação.',
     ogTitle: 'MotoRival',
-    ogDescription: 'Guerra territorial para motociclistas. iOS em breve.',
+    ogDescription: 'Guerra territorial para motociclistas. iOS live, Android em preparação.',
   },
   nav: { download: 'Baixar', skipToContent: 'Ir ao conteúdo', toggleTheme: 'Mudar tema' },
   hero: {
-    eyebrow: 'NOVO · iOS · v1',
+    eyebrow: 'NOVO · iOS LIVE · ANDROID EM PREPARAÇÃO',
     headline: ['PILOTE.', 'CAPTURE.', 'CONQUISTE.'],
     title: ['Cada estrada', 'é sua.', ''],
     sub: 'Pilote. Capture zonas. Defenda-as dos rivais. Um app feito para motociclistas.',
@@ -616,7 +660,7 @@ const pt: Dict = {
       { q: 'Mede minha velocidade?', a: 'Não. Nunca. Decisão de produto. Trackamos distância, tempo, zonas — não velocidade. Pela sua segurança e a nossa.' },
       { q: 'Tem versão grátis?', a: 'Sim. Início grátis com 1 ride por semana, captura de zonas, ranking cidade, streak diário, Modo Riding. Rival Pass libera rides ilimitados, rankings globais, crews, Pin-to-Ride, Nemesis, Personas, desafios diários e stats avançadas. $2.99/sem ou $49.99/ano.' },
       { q: 'Minhas zonas expiram?', a: "Se você não passar por cima delas por 7 dias, começam a desbotar no mapa (decay visual). A gente avisa às 18h na véspera — sai pra defender." },
-      { q: 'Android?', a: 'iPhone primeiro. Android está no roadmap (v2.0) — sem data ainda. Por enquanto, MotoRival sai só no iOS.' },
+      { q: 'Android?', a: 'Sim. O build Android via Despia já começou. iOS está live; Android vem depois da verificação Google Play, teste fechado e review do GPS em background.' },
       { q: 'Como deleto minha conta?', a: 'Settings → Danger Zone → Deletar minha conta. Tudo apagado: perfil, rides, zonas, crew. Se tem Rival Pass ativo, cancele à parte em Ajustes iOS → Assinaturas (Apple gerencia, não a gente).' },
     ],
   },
@@ -625,7 +669,7 @@ const pt: Dict = {
     title: ['As ruas estão', 'livres.'],
     sub: 'Primeiro ride. Primeira zona capturada. Primeiro roubo sofrido. O cronômetro começa agora.',
     note: 'Grátis com 1 ride/sem · Rival Pass libera tudo',
-    soon: 'Em breve no iOS · Submission em andamento',
+    soon: 'iOS live · Android em preparação',
   },
   footer: {
     tagline: 'Guerra territorial para motociclistas. Feito em Genebra. Lançado no iOS.',
@@ -637,7 +681,16 @@ const pt: Dict = {
     rights: '© 2026 MotoRival · AppSprint Studio · Genebra',
     motto: 'Pilote seguro. Pilote longe.',
   },
-  badge: { download: 'Baixar na', appStore: 'App Store', soon: 'Em breve na App Store. Submission em andamento.', aria: 'Baixar na App Store' },
+  badge: {
+    download: 'Baixar na',
+    appStore: 'App Store',
+    soon: 'Já na App Store. Android em preparação.',
+    aria: 'Baixar na App Store',
+    androidKicker: 'EM BREVE NA',
+    googlePlay: 'Google Play',
+    androidSoon: 'Android em preparação',
+    androidAria: 'Google Play em preparação',
+  },
 };
 
 export const ui: Record<Locale, Dict> = { fr, en, es, de, it, pt };

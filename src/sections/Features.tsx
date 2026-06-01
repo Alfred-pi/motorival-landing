@@ -1,10 +1,4 @@
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Props { locale: Locale; }
 
@@ -170,48 +164,10 @@ function Icon({ name }: { name: IconKey }) {
 }
 
 export default function Features({ locale }: Props) {
-  const root = useRef<HTMLElement>(null);
   const copy = COPY[locale];
 
-  useGSAP(
-    () => {
-      gsap.from(".ft-head > *", {
-        scrollTrigger: { trigger: ".ft-head", start: "top 80%" },
-        opacity: 0,
-        y: 24,
-        filter: "blur(10px)",
-        duration: 1,
-        ease: "expo.out",
-        stagger: 0.08,
-      });
-
-      gsap.from(".ft-card", {
-        scrollTrigger: { trigger: ".ft-grid", start: "top 85%", once: true },
-        opacity: 0,
-        y: 28,
-        duration: 0.9,
-        ease: "expo.out",
-        stagger: 0.07,
-        immediateRender: false,
-      });
-
-      // Subtle icon pulse on viewport entry
-      gsap.from(".ft-icon", {
-        scrollTrigger: { trigger: ".ft-grid", start: "top 85%", once: true },
-        scale: 0.5,
-        opacity: 0,
-        duration: 0.9,
-        ease: "back.out(1.6)",
-        stagger: 0.06,
-        delay: 0.15,
-        immediateRender: false,
-      });
-    },
-    { scope: root }
-  );
-
   return (
-    <section ref={root} className="relative py-32 md:py-44 hairline-top">
+    <section className="relative py-32 md:py-44 hairline-top">
       <div className="mx-auto max-w-[1320px] px-6 md:px-12">
         <header className="ft-head mb-20 md:mb-24">
           <span className="eyebrow text-[var(--color-muted)] block mb-5">

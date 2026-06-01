@@ -18,16 +18,16 @@ const BASE = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
 /** Prefix a path with the configured Astro base (no-op when base is "/"). */
 export function withBase(path: string): string {
-  const clean = path.startsWith('/') ? path : `/${path}`;
+  const clean = ensureTrailingSlash(path.startsWith('/') ? path : `/${path}`);
   return `${BASE}${clean}`;
 }
 
 /** Build a path for a given locale. Default locale lives at root (no prefix). */
 export function localePath(locale: Locale, path = '/'): string {
-  const clean = path.startsWith('/') ? path : `/${path}`;
+  const clean = ensureTrailingSlash(path.startsWith('/') ? path : `/${path}`);
   const localised = locale === DEFAULT_LOCALE
     ? clean
-    : `/${locale}${clean === '/' ? '' : clean}`;
+    : `/${locale}${clean === '/' ? '/' : clean}`;
   return `${BASE}${localised}`;
 }
 
@@ -51,7 +51,13 @@ export function alternates(origin: string, currentPath = '/') {
 function stripLocalePrefix(path: string): string {
   const parts = path.split('/').filter(Boolean);
   if (parts.length && isLocale(parts[0])) {
-    return '/' + parts.slice(1).join('/');
+    return ensureTrailingSlash('/' + parts.slice(1).join('/'));
   }
-  return path || '/';
+  return ensureTrailingSlash(path || '/');
+}
+
+function ensureTrailingSlash(path: string): string {
+  if (!path || path === '/') return '/';
+  if (path.includes('#') || path.includes('?')) return path;
+  return path.endsWith('/') ? path : `${path}/`;
 }

@@ -19,7 +19,7 @@ const dict = t(locale);
       </div>
 
       <div>
-        <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.legal}</h4>
+        <p class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.legal}</p>
         <ul class="space-y-3 text-sm">
           <li>
             <a href={localePath(locale, "/privacy")} class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
@@ -35,7 +35,7 @@ const dict = t(locale);
       </div>
 
       <div>
-        <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.support}</h4>
+        <p class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.support}</p>
         <ul class="space-y-3 text-sm">
           <li>
             <a href={localePath(locale, "/support")} class="text-[color-mix(in_oklab,var(--color-text)_80%,transparent)] hover:text-[var(--color-accent)] transition-colors">
@@ -54,7 +54,7 @@ const dict = t(locale);
       </div>
 
       <div>
-        <h4 class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.languages}</h4>
+        <p class="eyebrow text-[var(--color-muted)] mb-4">{dict.footer.languages}</p>
         <ul class="space-y-2 text-sm">
           {SUPPORTED_LOCALES.map((loc) => (
             <li>
@@ -76,7 +76,7 @@ const dict = t(locale);
 
     <div class="border-t border-[var(--color-line)] pt-8 flex flex-wrap gap-4 justify-between text-xs text-[var(--color-muted)] tracking-wide">
       <span>{dict.footer.rights}</span>
-      <span class="opacity-70">{dict.footer.motto}</span>
+      <span class="text-[color-mix(in_oklab,var(--color-text)_76%,transparent)]">{dict.footer.motto}</span>
     </div>
   </div>
 </footer>

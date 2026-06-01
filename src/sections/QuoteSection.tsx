@@ -1,17 +1,11 @@
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
 import { asset } from "../lib/asset";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Props { locale: Locale; }
 
 // Self-hosted hero shot — same image used as the paywall hero in-app, so
 // the brand visual is consistent across the funnel.
-const PHOTO = asset("/media/rider-hero.jpg");
+const PHOTO = asset("/media/rider-hero-1440.webp");
 
 const COPY: Record<Locale, { eyebrow: string; quote: string; cite: string }> = {
   fr: {
@@ -47,31 +41,10 @@ const COPY: Record<Locale, { eyebrow: string; quote: string; cite: string }> = {
 };
 
 export default function QuoteSection({ locale }: Props) {
-  const root = useRef<HTMLElement>(null);
   const copy = COPY[locale];
-
-  useGSAP(
-    () => {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      // Slow Ken-Burns on the photo. No initial-state hide on text — SSR
-      // markup must be visible immediately to avoid the blank-flash.
-      if (!reduced) {
-        gsap.fromTo(".quote-photo",
-          { scale: 1.04, yPercent: -1 },
-          {
-            scale: 1.12, yPercent: 1, ease: "none",
-            scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: 1 },
-          }
-        );
-      }
-    },
-    { scope: root }
-  );
 
   return (
     <section
-      ref={root}
       className="relative w-full hairline-top hairline-bot overflow-hidden"
       style={{ minHeight: "100svh" }}
     >
@@ -80,7 +53,9 @@ export default function QuoteSection({ locale }: Props) {
           src={PHOTO}
           alt=""
           className="quote-photo w-full h-full object-cover"
-          loading="eager"
+          width={1440}
+          height={785}
+          loading="lazy"
           decoding="async"
           style={{ filter: "grayscale(1) contrast(1.06) brightness(0.86)" }}
         />

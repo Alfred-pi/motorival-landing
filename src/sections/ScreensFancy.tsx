@@ -1,11 +1,5 @@
-import { useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { type Locale } from "../i18n/utils";
 import { asset } from "../lib/asset";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Props { locale: Locale; }
 
@@ -97,210 +91,80 @@ const COPY: Record<Locale, { eyebrow: string; title: string; sub: string; slides
 };
 
 export default function ScreensFancy({ locale }: Props) {
-  const root = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
   const copy = COPY[locale];
 
   // FR ships native French shots; every other locale uses the US set.
   const region: "fr" | "us" = locale === "fr" ? "fr" : "us";
   const slides = SLIDE_KEYS.map((key, i) => ({
-    src: asset(`/screens/${region}/${key}-${region}.png`),
+    src: asset(`/screens/optimized/${region}/${key}-${region}.webp`),
     ...copy.slides[i],
   }));
 
-  useGSAP(
-    () => {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      gsap.from(".sc-head > *", {
-        scrollTrigger: { trigger: ".sc-head", start: "top 80%" },
-        opacity: 0,
-        y: 24,
-        filter: "blur(10px)",
-        duration: 1,
-        ease: "expo.out",
-        stagger: 0.08,
-      });
-
-      if (reduced) return;
-
-      const matchMedia = gsap.matchMedia();
-
-      // Desktop pin + sticky scroll. Depth scales with slide count so each
-      // slide gets the same scroll budget regardless of how many we ship.
-      matchMedia.add("(min-width: 1024px)", () => {
-        ScrollTrigger.create({
-          trigger: root.current,
-          start: "top top",
-          end: () => "+=" + window.innerHeight * (slides.length - 1),
-          pin: ".sc-pin",
-          scrub: false,
-          snap: {
-            snapTo: (value) => {
-              const denom = slides.length - 1;
-              return Math.round(value * denom) / denom;
-            },
-            duration: { min: 0.2, max: 0.5 },
-            ease: "expo.out",
-          },
-          onUpdate: (self) => {
-            const idx = Math.min(slides.length - 1, Math.floor(self.progress * slides.length));
-            setActive(idx);
-          },
-          invalidateOnRefresh: true,
-        });
-      });
-
-      // Mobile: auto-rotate every 3.5s. 6 slides × 3.5 = ~21s loop.
-      matchMedia.add("(max-width: 1023px)", () => {
-        let i = 0;
-        const id = window.setInterval(() => {
-          i = (i + 1) % slides.length;
-          setActive(i);
-        }, 3500);
-        return () => window.clearInterval(id);
-      });
-    },
-    { scope: root, dependencies: [slides.length] }
-  );
-
-  const phoneRef = useRef<HTMLDivElement>(null);
-
   return (
-    <section ref={root} className="relative hairline-top">
-      <div className="sc-pin w-full lg:min-h-screen overflow-hidden py-20 lg:py-24 flex items-center">
-        <div aria-hidden className="absolute inset-0 -z-10 hex-bg pointer-events-none">
-          <svg className="absolute right-0 top-0 h-full w-[55%]" viewBox="-50 -50 700 600" preserveAspectRatio="xMaxYMid slice">
-            {Array.from({ length: 60 }).map((_, i) => {
-              const c = i % 10;
-              const r = Math.floor(i / 10);
-              const size = 36;
-              const h = Math.sqrt(3) * size;
-              const x = c * (1.5 * size);
-              const y = r * h + (c % 2 === 0 ? 0 : h / 2);
-              const d = `M${x + size},${y} L${x + size / 2},${y + h / 2} L${x - size / 2},${y + h / 2} L${x - size},${y} L${x - size / 2},${y - h / 2} L${x + size / 2},${y - h / 2} Z`;
-              return <path key={i} d={d} className="hex-cell" />;
-            })}
-          </svg>
-        </div>
+    <section className="relative hairline-top overflow-hidden py-24 md:py-32">
+      <div aria-hidden className="absolute inset-0 -z-10 hex-bg pointer-events-none">
+        <svg className="absolute right-0 top-0 h-full w-[55%]" viewBox="-50 -50 700 600" preserveAspectRatio="xMaxYMid slice">
+          {Array.from({ length: 60 }).map((_, i) => {
+            const c = i % 10;
+            const r = Math.floor(i / 10);
+            const size = 36;
+            const h = Math.sqrt(3) * size;
+            const x = c * (1.5 * size);
+            const y = r * h + (c % 2 === 0 ? 0 : h / 2);
+            const d = `M${x + size},${y} L${x + size / 2},${y + h / 2} L${x - size / 2},${y + h / 2} L${x - size},${y} L${x - size / 2},${y - h / 2} L${x + size / 2},${y - h / 2} Z`;
+            return <path key={i} d={d} className="hex-cell" />;
+          })}
+        </svg>
+      </div>
 
-        <div className="mx-auto max-w-[1320px] w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-10 lg:gap-16 items-center">
-          {/* LEFT — header */}
-          <div className="sc-head order-2 lg:order-1 max-w-[36ch]">
-            <span className="eyebrow text-[var(--color-muted)] block mb-5">
-              {copy.eyebrow}
-            </span>
-            <h2
-              className="font-display text-[var(--color-text)] mb-6"
-              style={{ fontSize: "clamp(36px, 4.6vw, 72px)", letterSpacing: "-0.04em", fontWeight: 800 }}
-            >
-              {copy.title}
-            </h2>
-            <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed">
-              {copy.sub}
-            </p>
+      <div className="mx-auto max-w-[1320px] w-full px-6 md:px-12">
+        <header className="max-w-[58ch] mb-14 md:mb-20">
+          <span className="eyebrow text-[var(--color-muted)] block mb-5">
+            {copy.eyebrow}
+          </span>
+          <h2
+            className="font-display text-[var(--color-text)] mb-6"
+            style={{ fontSize: "clamp(36px, 4.6vw, 72px)", letterSpacing: "-0.04em", fontWeight: 800 }}
+          >
+            {copy.title}
+          </h2>
+          <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed">
+            {copy.sub}
+          </p>
+        </header>
 
-            {/* Step indicator */}
-            <div className="flex items-center gap-2.5 mt-10">
-              {slides.map((_, i) => (
-                <span
-                  key={i}
-                  className="h-[3px] rounded-full transition-all duration-500"
-                  style={{
-                    width: i === active ? 32 : 10,
-                    background:
-                      i === active
-                        ? "var(--color-accent)"
-                        : "color-mix(in oklab, var(--color-text) 18%, transparent)",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* CENTER — iPhone with crossfading slides */}
-          <div className="order-1 lg:order-2 justify-self-center">
-            <div
-              ref={phoneRef}
-              className="relative will-change-transform"
-              style={{
-                width: "clamp(220px, 26vw, 340px)",
-                maxWidth: "min(60vw, 340px)",
-              }}
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 -m-8 rounded-[40%]"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-accent) 32%, transparent) 0%, transparent 70%)",
-                  filter: "blur(48px)",
-                  opacity: 0.5,
-                }}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-[var(--color-line)] hairline-top hairline-bot">
+          {slides.map((s, i) => (
+            <article key={s.src} className="bg-[var(--color-bg)] p-5 md:p-7 grid grid-cols-[92px_1fr] sm:grid-cols-[128px_1fr] gap-5 items-start">
+              <img
+                src={s.src}
+                alt={s.title}
+                className="block w-full h-auto select-none"
+                width={760}
+                height={1498}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
               />
-              <div
-                className="relative"
-                style={{ display: "grid", gridTemplateAreas: '"stack"' }}
-              >
-                {slides.map((s, i) => (
-                  <div
-                    key={s.src}
-                    className="transition-opacity duration-700 ease-out"
-                    style={{ gridArea: "stack", opacity: i === active ? 1 : 0 }}
-                  >
-                    {/* Screenshots already include the iPhone chassis — render
-                        them bare, no DeviceFrame wrapper. */}
-                    <img
-                      src={s.src}
-                      alt={s.title}
-                      className="block w-full h-auto select-none"
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      draggable={false}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT — captions */}
-          <div className="order-3 w-full max-w-[36ch] lg:justify-self-start">
-            <div
-              className="sc-caption-stack"
-              style={{ display: "grid", gridTemplateAreas: '"stack"', minHeight: 200 }}
-            >
-              {slides.map((s, i) => (
-                <div
-                  key={s.src}
-                  className="transition-all duration-500 ease-out"
-                  style={{
-                    gridArea: "stack",
-                    opacity: i === active ? 1 : 0,
-                    transform: `translateY(${i === active ? 0 : 14}px)`,
-                    pointerEvents: i === active ? "auto" : "none",
-                  }}
-                  aria-hidden={i !== active}
+              <div>
+                <span
+                  className="font-heading text-[var(--color-accent)] block mb-3"
+                  style={{ fontSize: "13px", letterSpacing: "0.18em", fontWeight: 600 }}
                 >
-                  <span
-                    className="font-heading text-[var(--color-accent)] block mb-3"
-                    style={{ fontSize: "13px", letterSpacing: "0.18em", fontWeight: 600 }}
-                  >
-                    {s.number} / {String(slides.length).padStart(2, "0")}
-                  </span>
-                  <h3
-                    className="font-display text-[var(--color-text)] mb-4"
-                    style={{ fontSize: "clamp(22px, 2.2vw, 32px)", letterSpacing: "-0.025em", fontWeight: 700 }}
-                  >
-                    {s.title}
-                  </h3>
-                  <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed">
-                    {s.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+                  {s.number} / {String(slides.length).padStart(2, "0")}
+                </span>
+                <h3
+                  className="font-display text-[var(--color-text)] mb-3"
+                  style={{ fontSize: "clamp(22px, 2vw, 30px)", letterSpacing: "-0.025em", fontWeight: 700 }}
+                >
+                  {s.title}
+                </h3>
+                <p className="text-[var(--color-muted)] text-base leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { t, type Locale, alternates, localePath, withBase } from "../i18n/utils";
 import { LOCALE_HREFLANG } from "../i18n/ui";
+import { APP_STORE_ID, appStoreUrl } from "../lib/appStore";
 
 interface Props {
   locale: Locale;
@@ -25,27 +26,96 @@ const alts = alternates(siteUrl, pagePath);
 const pageTitle = title ?? dict.meta.title;
 const pageDescription = description ?? dict.meta.description;
 
-// JSON-LD MobileApplication
+const appUrl = appStoreUrl(locale);
+const organizationId = `${siteUrl}/#organization`;
+const websiteId = `${siteUrl}/#website`;
+const appId = `${siteUrl}/#mobile-application`;
+const pageId = `${canonical}#webpage`;
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  name: "MotoRival",
-  description: dict.meta.description,
-  applicationCategory: ["SportsApplication", "GameApplication"],
-  operatingSystem: "iOS",
-  url: siteUrl || undefined,
-  inLanguage: LOCALE_HREFLANG[locale],
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "USD",
-    price: "0",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "AppSprint Studio",
-    url: "https://appsprint.dev",
-  },
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "AppSprint Studio",
+      url: "https://appsprint.dev",
+      brand: {
+        "@type": "Brand",
+        name: "MotoRival",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      name: "MotoRival",
+      url: siteUrl || undefined,
+      inLanguage: LOCALE_HREFLANG[locale],
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": pageId,
+      name: pageTitle,
+      url: canonical,
+      description: pageDescription,
+      isPartOf: { "@id": websiteId },
+      about: { "@id": appId },
+      inLanguage: LOCALE_HREFLANG[locale],
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": appId,
+      name: "MotoRival",
+      description: dict.meta.description,
+      applicationCategory: ["SportsApplication", "GameApplication"],
+      operatingSystem: "iOS",
+      url: siteUrl || undefined,
+      installUrl: appUrl,
+      sameAs: [appUrl],
+      identifier: APP_STORE_ID,
+      inLanguage: LOCALE_HREFLANG[locale],
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        price: "0",
+      },
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${canonical}#faq`,
+      mainEntity: dict.faq.items.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    },
+  ],
 };
+
+const fontLinks = {
+  inter: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+  satoshi: "https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500&display=swap",
+};
+
+const shouldRenderFaqSchema = pagePath === "/";
+if (!shouldRenderFaqSchema) {
+  jsonLd["@graph"] = jsonLd["@graph"].filter((entry) => entry["@type"] !== "FAQPage");
+}
+
+const preloadImages = locale === "fr"
+  ? {
+      heroPoster: `${siteUrl}/screens/optimized/us/map-us.webp`,
+      frame: `${siteUrl}/frame/iphone-15-pro-no-notch.webp`,
+    }
+  : {
+      heroPoster: `${siteUrl}/screens/optimized/us/map-us.webp`,
+      frame: `${siteUrl}/frame/iphone-15-pro-no-notch.webp`,
+    };
 ---
 
 <!doctype html>
@@ -58,6 +128,7 @@ const jsonLd = {
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical} />
+    <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}, app-argument=${appUrl}`} />
 
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}apple-touch-icon.png`} />
@@ -76,6 +147,8 @@ const jsonLd = {
     <meta property="og:title" content={dict.meta.ogTitle} />
     <meta property="og:description" content={dict.meta.ogDescription} />
     <meta property="og:image" content={`${siteUrl}${import.meta.env.BASE_URL}og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={LOCALE_HREFLANG[locale].replace("-", "_")} />
     <meta property="og:site_name" content="MotoRival" />
 
@@ -89,14 +162,24 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preload" as="image" href={preloadImages.heroPoster} fetchpriority="high" />
+    <link rel="preload" as="image" href={preloadImages.frame} fetchpriority="high" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      href={fontLinks.inter}
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500&display=swap"
-      rel="stylesheet"
+      href={fontLinks.satoshi}
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link href={fontLinks.inter} rel="stylesheet" />
+      <link href={fontLinks.satoshi} rel="stylesheet" />
+    </noscript>
 
     <!-- Theme init + body lock (must run before paint to avoid flash). Light by default. -->
     <script is:inline>
@@ -160,7 +243,7 @@ const jsonLd = {
 
         // Release the loader after window load + min splash time
         var loader = document.getElementById("page-loader");
-        var minSplash = 1800; // total dwell with anim
+        var minSplash = 350; // keep brand flash without hurting LCP
         var start = performance.now();
         function releaseLoader() {
           var elapsed = performance.now() - start;

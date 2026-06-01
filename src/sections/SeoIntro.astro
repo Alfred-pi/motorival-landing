@@ -1,0 +1,87 @@
+---
+import { type Locale } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const copy: Record<Locale, {
+  eyebrow: string;
+  title: string;
+  body: string;
+  points: [string, string, string];
+}> = {
+  fr: {
+    eyebrow: "JEU GPS POUR MOTARDS",
+    title: "MotoRival transforme chaque ride en bataille de territoire.",
+    body:
+      "MotoRival est un jeu GPS territorial pour motards. Tu roules, l'app capture les zones hexagonales traversées, puis tes rivaux peuvent les voler. Ce n'est pas une app de navigation : c'est une couche compétitive au-dessus de tes sorties moto.",
+    points: ["iOS disponible sur l'App Store", "Android en préparation", "Aucun scoring de vitesse"],
+  },
+  en: {
+    eyebrow: "GPS GAME FOR MOTORCYCLISTS",
+    title: "MotoRival turns every ride into a territory battle.",
+    body:
+      "MotoRival is a GPS territory game for motorcycle riders. You ride, the app captures the hex zones you cross, and rivals can steal them back. It is not a navigation app: it is a competitive layer on top of your motorcycle rides.",
+    points: ["Live on the App Store", "Android in preparation", "No speed scoring"],
+  },
+  es: {
+    eyebrow: "JUEGO GPS PARA MOTORISTAS",
+    title: "MotoRival convierte cada ruta en una batalla territorial.",
+    body:
+      "MotoRival es un juego GPS territorial para motoristas. Ruedas, la app captura las zonas hexagonales que cruzas y tus rivales pueden robártelas. No es una app de navegación: es una capa competitiva sobre tus salidas en moto.",
+    points: ["Disponible en App Store", "Android en preparación", "Sin puntuación de velocidad"],
+  },
+  de: {
+    eyebrow: "GPS-SPIEL FÜR MOTORRADFAHRER",
+    title: "MotoRival macht jede Fahrt zum Territory-Kampf.",
+    body:
+      "MotoRival ist ein GPS-Territory-Spiel für Motorradfahrer. Du fährst, die App erobert die Hex-Zonen auf deiner Route und Rivalen können sie zurückholen. Es ist keine Navigations-App, sondern eine kompetitive Ebene über deinen Motorradtouren.",
+    points: ["Live im App Store", "Android in Vorbereitung", "Kein Speed-Scoring"],
+  },
+  it: {
+    eyebrow: "GIOCO GPS PER MOTOCICLISTI",
+    title: "MotoRival trasforma ogni giro in una battaglia territoriale.",
+    body:
+      "MotoRival è un gioco GPS territoriale per motociclisti. Guidi, l'app cattura le zone esagonali attraversate e i rivali possono rubarle. Non è un'app di navigazione: è uno strato competitivo sopra i tuoi giri in moto.",
+    points: ["Live su App Store", "Android in preparazione", "Nessun punteggio velocità"],
+  },
+  pt: {
+    eyebrow: "JOGO GPS PARA MOTOCICLISTAS",
+    title: "MotoRival transforma cada volta em disputa territorial.",
+    body:
+      "MotoRival é um jogo GPS territorial para motociclistas. Você pilota, o app captura as zonas hexagonais atravessadas e rivais podem roubá-las. Não é um app de navegação: é uma camada competitiva sobre seus rolês de moto.",
+    points: ["Já na App Store", "Android em preparação", "Sem pontuação por velocidade"],
+  },
+};
+
+const c = copy[locale];
+---
+
+<section class="hairline-top bg-[var(--color-bg)]">
+  <div class="mx-auto max-w-[1320px] px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-20">
+    <div>
+      <span class="eyebrow text-[var(--color-muted)]">{c.eyebrow}</span>
+    </div>
+    <div>
+      <h2
+        class="font-display text-[var(--color-text)] max-w-[18ch]"
+        style="font-size:clamp(34px,4.4vw,72px);letter-spacing:-0.04em;font-weight:800;"
+      >
+        {c.title}
+      </h2>
+      <p class="mt-7 text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-[68ch]">
+        {c.body}
+      </p>
+      <ul class="mt-8 flex flex-wrap gap-2.5">
+        {c.points.map((point) => (
+          <li class="surface px-3.5 py-2 text-sm font-semibold text-[var(--color-text)]">
+            {point}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

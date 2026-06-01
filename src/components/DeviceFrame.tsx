@@ -30,6 +30,7 @@ interface Props {
   className?: string;
   style?: CSSProperties;
   loading?: "eager" | "lazy";
+  fetchPriority?: "high" | "low" | "auto";
   autoplay?: boolean;
   /** Forwarded to the inner <video> element when present. */
   onEnded?: React.ReactEventHandler<HTMLVideoElement>;
@@ -56,8 +57,8 @@ const INSET_RIGHT = "8.457%";
 const SCREEN_RADIUS = "4.66% / 2.17%";
 
 const FRAME_SRC: Record<NonNullable<Props["variant"]>, string> = {
-  default: asset("/frame/iphone-15-pro.png"),
-  "no-notch": asset("/frame/iphone-15-pro-no-notch.png"),
+  default: asset("/frame/iphone-15-pro.webp"),
+  "no-notch": asset("/frame/iphone-15-pro-no-notch.webp"),
 };
 
 export default function DeviceFrame({
@@ -68,6 +69,7 @@ export default function DeviceFrame({
   className = "",
   style,
   loading = "lazy",
+  fetchPriority = "auto",
   autoplay = true,
   onEnded,
   videoRef,
@@ -116,7 +118,10 @@ export default function DeviceFrame({
             src={posterSrc}
             alt={alt}
             className="absolute inset-0 w-full h-full object-cover"
+            width={1179}
+            height={2556}
             loading={loading}
+            fetchPriority={fetchPriority}
             decoding="async"
           />
         )}
@@ -128,7 +133,10 @@ export default function DeviceFrame({
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full pointer-events-none select-none"
+        width={1419}
+        height={2796}
         loading={loading}
+        fetchPriority={fetchPriority}
         decoding="async"
         draggable={false}
       />

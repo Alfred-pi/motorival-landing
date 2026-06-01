@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroFancy from "../../sections/HeroFancy.tsx";
+import SeoIntro from "../../sections/SeoIntro.astro";
 import QuoteSection from "../../sections/QuoteSection.tsx";
 import ScreensFancy from "../../sections/ScreensFancy.tsx";
 import Features from "../../sections/Features.tsx";
@@ -11,10 +12,11 @@ const locale = "en" as const;
 ---
 
 <BaseLayout locale={locale} pagePath="/">
-  <HeroFancy locale={locale} client:load />
-  <QuoteSection locale={locale} client:visible />
-  <ScreensFancy locale={locale} client:only="react" />
-  <Features locale={locale} client:visible />
-  <FAQFancy locale={locale} client:visible />
-  <FinalCTA locale={locale} client:visible />
+  <HeroFancy locale={locale} />
+  <SeoIntro locale={locale} />
+  <QuoteSection locale={locale} />
+  <ScreensFancy locale={locale} />
+  <Features locale={locale} />
+  <FAQFancy locale={locale} />
+  <FinalCTA locale={locale} />
 </BaseLayout>
